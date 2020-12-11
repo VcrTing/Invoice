@@ -1,0 +1,60 @@
+
+.hand {
+    cursor: pointer;
+}
+
+.bg-white {
+    background: white;
+}
+
+.home-space {
+    margin-top: 60px;
+}
+
+.page-title {
+    font-size: 28px;
+    color: #4f4f4f;
+    padding-top: 20px;
+    padding-bottom: 28px;
+}
+
+.mr-zero {
+    margin: 0 !important;
+}
+.pd-zero {
+    padding: 0 !important;
+}
+
+.mr-t-main {
+    margin-top: 15px; }
+    .mr-r-main {
+        margin-right: 15px; }
+        .mr-b-main {
+            margin-bottom: 15px; }
+            .mr-l-main {
+                margin-left: 15px; }
+.mr-t-half {
+    margin-top: 6px !important; }
+    .mr-r-half {
+        margin-right: 6px; }
+        .mr-b-half {
+            margin-bottom: 6px; }
+            .mr-l-half {
+                margin-left: 6px; }
+
+.pd-t-main {
+    padding-top: 15px; }
+    .pd-r-main {
+        padding-right: 15px; }
+        .pd-b-main {
+            padding-bottom: 15px; }
+            .pd-l-main {
+                padding-left: 15px; }
+.pd-t-half {
+    padding-top: 6px; }
+    .pd-r-half {
+        padding-right: 6px; }
+        .pd-b-half {
+            padding-bottom: 6px; }
+            .pd-l-half {
+                padding-left: 6px; }

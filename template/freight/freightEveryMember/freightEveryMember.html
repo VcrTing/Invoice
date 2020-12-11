@@ -1,0 +1,33 @@
+{% extends 'index.html' %}
+{% load staticfiles %}
+{% block content %}
+
+<table class="table">
+    <thead>
+        <tr>
+            <td>
+                客人编号
+            </td>
+            <td>
+                客人名称
+            </td>
+            <td>
+                送货地址
+            </td>
+            <td align="center">
+                菜品单价
+            </td>
+            <td align="center">
+                订购清单
+            </td>
+            <td align="center">
+                操作
+            </td>
+        </tr>
+    </thead>
+    <tbody>
+        {{ freightEveryMember }}
+    </tbody>
+</table>
+
+{% endblock content %}

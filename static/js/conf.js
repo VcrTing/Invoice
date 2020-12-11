@@ -1,0 +1,2 @@
+
+var head = 'http://'

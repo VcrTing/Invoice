@@ -1,0 +1,13 @@
+{% extends 'base/base.html' %}
+{% load staticfiles %}
+{% block body %}
+<div class="container">
+    <div class="row home-space text-center">
+        <div class="page-title">新增报价清单</div>
+    </div>
+    {% include './plus_member.html' %}
+    
+    {% include './plus_freight.html' %}
+</div>
+
+{% endblock body %}

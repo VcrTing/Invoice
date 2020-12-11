@@ -1,0 +1,87 @@
+{% extends 'base/base.html' %}
+{% load staticfiles %}
+{% block body %}
+<div id="app">
+    <div class="row">
+        <div class="row-wrapper">
+            <button class="btn-main hand">
+                确定
+            </button>
+            <button class="btn-main-outline hand">
+                确定
+            </button>
+            <button class="btn-main-thin hand">
+                确定
+            </button>
+            <button class="btn-main-outline-thin hand">
+                确定
+            </button>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="row-wrapper">
+            <div class="card card-main">
+                空心菜
+            </div>
+            <div class="card card-thin">
+                空心菜
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="row-wrapper">
+            <form>
+                <div class="input-wrapper">
+                    <label>客人名称: </label>
+                    <input class="input" type="text"/>
+                </div>
+
+                <div>
+                    <label>客人名称: </label>       
+                    <select name="" id="" class="input select">
+                        <option>请选择</option>
+                    </select>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        <div class="row-wrapper">
+            <table class="table-wrapper">
+                <tr>
+                    <th>编号</th>
+                    <th>名称</th>
+                    <th>单价</th>
+                    <th>价格</th>
+                </tr>
+                <tbody>
+                    <tr>
+                        <td>3348</td>
+                        <td>空心菜</td>
+                        <td>¥ 32.00</td>
+                        <td>32.00</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="row-wrapper">
+            <div class="panel">
+                {{ member }}
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    var vue = new Vue({
+        el: '#app',
+        data: {
+
+        }
+    })
+</script>
+{% endblock body %}

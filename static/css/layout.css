@@ -1,0 +1,13 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: #f7f7f7;
+}
+* {
+    box-sizing: border-box;
+}
+
+
+@media screen and (min-width: 1200px) {
+    
+}

@@ -1,0 +1,33 @@
+{% extends 'base/base.html' %}
+{% load staticfiles %}
+{% block body %}
+<div id="app" class="container">
+    <div class="row home-space text-center">
+        <div class="page-title">报价管理系统</div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="bg-white">
+                <div class="menu">
+                    <div class="menu-item menu-item-active hand">
+                        客人列表
+                    </div>
+                    <div class="menu-item hand">
+                        全部菜品
+                    </div>
+                    <div class="menu-item hand">
+                        全部清单
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-9 bg-white">
+            {% block content %}
+
+            {% endblock content %}
+        </div>
+    </div>
+    
+</div>
+
+{% endblock body %}

@@ -1,0 +1,55 @@
+
+{% load staticfiles %}
+
+<div class="row mr-t-main">
+    <div class="col-sm-12 bg-white">
+        {{ member.named }}
+       <table class="plus-table">
+            <tr>
+                <td class="plus-td-left">
+                    <table class="plus-member-table">
+                        <tr>
+                            <td>客户：</td><td>{{ member.named }}</td>
+                        </tr>
+                        <tr>
+                            <td>地址：</td><td>{{ member.addr }}</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div style="height: 45px;"></div>
+                            </td><td></td>
+                        </tr>
+                        <tr>
+                            <td>联络人：</td><td></td>
+                        </tr>
+                        <tr>
+                            <td>电话：</td><td></td>
+                        </tr>
+                        <tr>
+                            <td>电邮地址</td><td></td>
+                        </tr>
+                    </table>
+                </td>
+                <td class="plus-td-right">
+                    <table class="plus-member-table">
+                        <tr><td>电邮编号：</td><td>S000374</td></tr>
+                        <tr><td>发票日期：</td><td>2020/11/16</td></tr>
+                        <tr><td>参考编号：</td><td></td></tr>
+                        <tr><td>客户编号：</td><td>{{ member.num }}</td></tr>
+                        <tr><td>销售员：</td><td></td></tr>
+                        <tr><td>付款方式：</td><td></td></tr>
+                        <tr><td>页数：</td><td>1 / 2</td></tr>
+                    </table>
+                </td>
+            </tr>
+       </table>
+    </div>
+</div>
+<style>
+    .plus-member-table td {
+        padding: 2px 15px;
+    }
+    .plus-td-left, .plus-td-right {
+        border: 1px solid #7e7e7e;
+    }
+</style>
