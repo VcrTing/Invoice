@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path, include, re_path
 from django.conf.urls import static
 from django.views.static import serve
+from django.views.generic import TemplateView
 
 from rest_framework import routers
 from rest_framework.documentation import include_docs_urls
@@ -44,7 +45,7 @@ from Appis.freight import views as freight
 from Appis.listing import views as listing
 
 urlpatterns = [
-    path('', web.WebView.as_view()),
+    path('', TemplateView.as_view(template_name="index.html")),
     
     path('api/', include(router.urls)),
     re_path(r'^media/(?P<path>.*)$',  serve, {'document_root': settings.MEDIA_ROOT}),
