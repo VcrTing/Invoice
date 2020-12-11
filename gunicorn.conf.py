@@ -12,4 +12,4 @@ errorlog = "./log/gunicorn_error.log"
 accesslog = "-" # 访问日志文件，"-" 表示标准输出
 errorlog = "-"
 
-proc_name = 'Invoice' # 进程名
+proc_name = 'invoice' # 进程名

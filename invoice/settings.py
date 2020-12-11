@@ -77,7 +77,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            os.path.join(BASE_DIR, 'template'),
+            os.path.join(BASE_DIR, 'front'),
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -151,7 +151,7 @@ STATIC_DIR = 'static'
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, STATIC_DIR),
-    os.path.join(BASE_DIR, 'template/static'),
+    os.path.join(BASE_DIR, os.path.join('template', 'static')),
 )
 
 MEDIA_URL = '/media/'
