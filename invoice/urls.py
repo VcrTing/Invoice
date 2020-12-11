@@ -45,10 +45,6 @@ from Appis.listing import views as listing
 
 urlpatterns = [
     path('', web.WebView.as_view()),
-    path('member/', member.MemberView.as_view()),
-    path('listing/', listing.ListingView.as_view()),
-    path('freight_every_member/', freight.FreightEveryMemberView.as_view()),
-    path('admin/', admin.site.urls),
     
     path('api/', include(router.urls)),
     re_path(r'^media/(?P<path>.*)$',  serve, {'document_root': settings.MEDIA_ROOT}),

@@ -15,13 +15,4 @@ from . import models
 
 class MemberView(View):
     def get(self, request):
-        option = request.GET.get('option', None)
-
-        member = models.Member.objects.filter(status = True)
-
-        if option:
-            pass 
-
-        return render(request, 'member/member.html', 
-            { 'member': member, }
-        )
+        pass

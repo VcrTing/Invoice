@@ -14,14 +14,14 @@ class AreaAdmin(admin.ModelAdmin):
     
     search_fields = ['area', ]
     list_filter = ['area', ]
-    readonly_fields = ['area']
+    readonly_fields = ['area', ]
     # exclude = ['id']
     fieldsets = (
         ("资料", {
             "fields": (
                 'area', 
             ),
-        })
+        }),
     )
     list_per_page = 50
     empty_value_display = '--'
@@ -33,7 +33,7 @@ class MemberAdmin(admin.ModelAdmin):
     
     search_fields = ['named', ]
     list_filter = ['status', ]
-    readonly_fields = ['add_time']
+    readonly_fields = ['add_time', ]
     # exclude = ['id']
     fieldsets = (
         ("资料", {

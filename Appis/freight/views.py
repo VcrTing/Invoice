@@ -15,14 +15,4 @@ from . import models
 
 class FreightEveryMemberView(View):
     def get(self, request):
-        res = { }
-        option = request.GET.get('option', None)
-
-        if option:
-            if option == 'view':
-                memberId = request.GET.get('member_id', None)
-
-                freightEveryMember = models.FreightEveryMember.objects.filter( Q(status = True) & Q(member = memberId))
-                res['freightEveryMember'] = freightEveryMember
-
-        return render(request, 'freight/freightEveryMember/freightEveryMember.html', res)
+        pass

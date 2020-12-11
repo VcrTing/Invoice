@@ -16,19 +16,4 @@ from Appis.member.models import Member
 
 class ListingView(View):
     def get(self, request):
-        res = {}
-        option = request.GET.get('option', None)
-
-        listing = models.Listing.objects.filter(status = True)
-
-        if option:
-            if option == 'plus':
-                memberId = request.GET.get('member_id', None)
-                member = Member.objects.filter(id = memberId)
-                res['member'] = member
-
-                return render(request, 'listing/plus/plus.html', res )
-
-        return render(request, 'listing/listing.html', 
-            {}
-        )
+        pass
