@@ -1,6 +1,9 @@
 from rest_framework import filters, pagination
 from rest_framework import mixins, viewsets, views, status, generics
 from rest_framework.response import Response
+
+from rest_framework.permissions import AllowAny
+
 from django_filters.rest_framework.backends import DjangoFilterBackend
 
 from . import models
@@ -16,13 +19,34 @@ class AreaViewSet(viewsets.ModelViewSet, generics.ListAPIView):
     filter_backends = (DjangoFilterBackend, filters.OrderingFilter)
     pagination_class = pagination.LimitOffsetPagination
 
-class MemberViewSet(viewsets.ModelViewSet, generics.ListAPIView):
+class MemberyViewSet(viewsets.ModelViewSet, generics.ListAPIView):
     """
         邮件模版
     """
-    queryset = models.Member.objects.all()
-    serializer_class = serializers.MemberSerializer
+    permission_classes = (AllowAny, )
+    queryset = models.Membery.objects.all()
+    serializer_class = serializers.MemberySerializer
     filter_backends = (DjangoFilterBackend, filters.OrderingFilter)
     filter_fields = ('status', )
     ordering_fields = ('add_time', )
+    pagination_class = pagination.LimitOffsetPagination
+    
+class PriceCollectViewSet(viewsets.ModelViewSet, generics.ListAPIView):
+    """
+        报价单
+    """
+    queryset = models.PriceCollect.objects.all()
+    serializer_class = serializers.PriceCollectSerializer
+    filter_backends = (DjangoFilterBackend, filters.OrderingFilter)
+    filter_fields = ('status', )
+    ordering_fields = ('add_time', )
+    pagination_class = pagination.LimitOffsetPagination
+
+class PriceCollectContentViewSet(viewsets.ModelViewSet, generics.ListAPIView):
+    """
+        报价单内容
+    """
+    queryset = models.PriceCollectContent.objects.all()
+    serializer_class = serializers.PriceCollectContentSerializer
+    filter_backends = (DjangoFilterBackend, filters.OrderingFilter)
     pagination_class = pagination.LimitOffsetPagination

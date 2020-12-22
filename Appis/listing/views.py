@@ -11,7 +11,6 @@ from django.core import serializers as djSerializer
 from django.db import connection 
 
 from . import models
-from Appis.member.models import Member
 # Create your views here.
 
 class ListingView(View):

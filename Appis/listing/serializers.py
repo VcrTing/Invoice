@@ -10,3 +10,12 @@ class ListingSerializer(serializers.ModelSerializer):
         model = models.Listing
         depth = 3
         fields = '__all__'
+
+class ListingContentSerializer(serializers.ModelSerializer):
+    """
+        发票 内容
+    """
+    class Meta:
+        model = models.ListingContent
+        depth = 3
+        fields = '__all__'

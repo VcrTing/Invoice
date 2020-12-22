@@ -14,7 +14,7 @@ class TagViewSet(viewsets.ModelViewSet, generics.ListAPIView):
     queryset = models.Tag.objects.all()
     serializer_class = serializers.TagSerializer
     filter_backends = (DjangoFilterBackend, filters.OrderingFilter)
-    filter_fields = ('status', )
+    
     ordering_fields = ('add_time', )
     pagination_class = pagination.LimitOffsetPagination
 
@@ -28,6 +28,7 @@ class FreightViewSet(viewsets.ModelViewSet, generics.ListAPIView):
     filter_fields = ('status', )
     ordering_fields = ('add_time', )
     pagination_class = pagination.LimitOffsetPagination
+
 
 """
 class FreightEveryMemberViewSet(viewsets.ModelViewSet, generics.ListAPIView):

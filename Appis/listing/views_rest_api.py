@@ -17,3 +17,12 @@ class ListingViewSet(viewsets.ModelViewSet, generics.ListAPIView):
     filter_fields = ('status', )
     ordering_fields = ('add_time', )
     pagination_class = pagination.LimitOffsetPagination
+
+class ListingContentViewSet(viewsets.ModelViewSet, generics.ListAPIView):
+    """
+        报价单内容
+    """
+    queryset = models.ListingContent.objects.all()
+    serializer_class = serializers.ListingContentSerializer
+    filter_backends = (DjangoFilterBackend, filters.OrderingFilter)
+    pagination_class = pagination.LimitOffsetPagination

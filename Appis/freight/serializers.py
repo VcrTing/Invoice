@@ -19,6 +19,7 @@ class FreightSerializer(serializers.ModelSerializer):
         model = models.Freight
         depth = 3
         fields = '__all__'
+        
 """
 class FreightEveryMemberSerializer(serializers.ModelSerializer):
     ""

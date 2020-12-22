@@ -10,7 +10,7 @@ admin.site.site_header = ADMIN_CONF['admin_header']
 
 @admin.register(models.Tag)
 class TagAdmin(admin.ModelAdmin):
-    list_display = ['named', 'add_time']
+    list_display = ['named', 'color', 'add_time']
     search_fields = ['named']
     readonly_fields = ['add_time']
     exclude = ['id']

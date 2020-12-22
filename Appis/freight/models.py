@@ -1,12 +1,12 @@
 from django.db import models
 from django.utils import timezone
 
-from ..member.models import Member
+from Appis.member import models as member_models
 # Create your models here.
 
 class Tag(models.Model):
     named = models.CharField(max_length=20, null=True, blank=True, unique=True, verbose_name='标签名称')
-    color = models.CharField(max_length=20, default='#CCD6D5', null=True, blank=True, unique=True, verbose_name='标签名字')
+    color = models.CharField(max_length=20, default='#CCD6D5', null=True, blank=True, unique=True, verbose_name='标签颜色')
 
     add_time = models.DateTimeField(verbose_name='创建时间', default=timezone.now)
 
@@ -31,9 +31,10 @@ class Freight(models.Model):
         (3, '扎'),
         (4, '两'),
         (5, '磅'),
+        (6, '条'),
     ), default=1, verbose_name='单位', null=True)
     tag = models.ManyToManyField(to = Tag, related_name='tag', blank=True, verbose_name='标签')
-    price = models.CharField(max_length=90, verbose_name='对应单价', default='0.00')
+    price = models.CharField(max_length=90, verbose_name='默认单价', default='0.00')
 
     status = models.BooleanField(verbose_name='数据状态', default = True)
     add_time = models.DateTimeField(verbose_name='創建時間', default=timezone.now)

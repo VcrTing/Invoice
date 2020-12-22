@@ -33,10 +33,15 @@ router = routers.DefaultRouter()
 
 router.register('tag', freightREST.TagViewSet)
 router.register('area', memberREST.AreaViewSet)
-router.register('member', memberREST.MemberViewSet)
+
+router.register('member', memberREST.MemberyViewSet)
+router.register('price_collect', memberREST.PriceCollectViewSet)
+router.register('price_collect_content', memberREST.PriceCollectContentViewSet)
+
 router.register('freight', freightREST.FreightViewSet)
 # router.register('freight_every_member', freightREST.FreightEveryMemberViewSet)
 router.register('listing', listingREST.ListingViewSet)
+router.register('listing_content', listingREST.ListingContentViewSet)
 
 # VIEWS
 from Appis.web import views as web
@@ -47,6 +52,7 @@ from Appis.listing import views as listing
 urlpatterns = [
     path('', TemplateView.as_view(template_name="index.html")),
     
+    path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
     re_path(r'^media/(?P<path>.*)$',  serve, {'document_root': settings.MEDIA_ROOT}),
     re_path(r'^static/(?P<path>.*)$', serve, {'document_root': settings.STATIC_URL}),
