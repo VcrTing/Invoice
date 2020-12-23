@@ -39,16 +39,40 @@ class PriceCollectSerializer(serializers.ModelSerializer):
     """
         报价单
     """
+    membery_id = serializers.IntegerField(required = False)
+
     class Meta:
         model = models.PriceCollect
         depth = 3
-        fields = '__all__'
+        fields = [ 'id', 'num', 'start_time', 'end_time', 'freight_num', 'draft_status', 'over_status', 'first_pdf', 'membery', 'membery_id', 'status', 'add_time']
+
+    def create(self, validated_data):
+        membery_id = validated_data.pop('membery_id')
+        instance = super().create(validated_data)
+        
+        instance.membery = models.Membery.objects.get(id = membery_id)
+        instance.save()
+        
+        return instance
+
 
 class PriceCollectContentSerializer(serializers.ModelSerializer):
     """
         报价单 内容
     """
+    price_collect_id = serializers.IntegerField(required = False)
+
     class Meta:
         model = models.PriceCollectContent
         depth = 3
-        fields = '__all__'
+        fields = [ 'id', 'price_collect_id', 'content' ]
+
+    def create(self, validated_data):
+        price_collect_id = validated_data.pop('price_collect_id')
+        instance = super().create(validated_data)
+        
+        instance.price_collect = models.PriceCollect.objects.get(id = price_collect_id)
+        instance.save()
+        
+        return instance
+    

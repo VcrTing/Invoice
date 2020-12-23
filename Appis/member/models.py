@@ -43,8 +43,8 @@ class PriceCollect(models.Model):
     # 报价单
     num = models.CharField(max_length=80, null=True, blank=True, verbose_name='报价单号')
    
-    start_time = models.DateTimeField(verbose_name='起始时间', default=timezone.now)
-    end_time = models.DateTimeField(verbose_name='结束时间', default=timezone.now)
+    start_time = models.DateTimeField(verbose_name='起始时间', null=True, blank=True, default=timezone.now)
+    end_time = models.DateTimeField(verbose_name='结束时间', null=True, blank=True, default=timezone.now)
 
     freight_num = models.SmallIntegerField(verbose_name='菜品数量', default=0)
 
