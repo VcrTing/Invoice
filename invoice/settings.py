@@ -30,6 +30,8 @@ ALLOWED_HOSTS = ['*']
 
 APPEND_SLASH = True
 
+AUTH_USER_MODEL = 'user.UserProfile'
+
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'invoice.settings.dev')
 
 # Application definition

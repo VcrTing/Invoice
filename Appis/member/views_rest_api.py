@@ -38,7 +38,7 @@ class PriceCollectViewSet(viewsets.ModelViewSet, generics.ListAPIView):
     queryset = models.PriceCollect.objects.all()
     serializer_class = serializers.PriceCollectSerializer
     filter_backends = (DjangoFilterBackend, filters.OrderingFilter)
-    filter_fields = ('status', )
+    filter_fields = ('status', 'num')
     ordering_fields = ('add_time', )
     pagination_class = pagination.LimitOffsetPagination
 
@@ -49,4 +49,5 @@ class PriceCollectContentViewSet(viewsets.ModelViewSet, generics.ListAPIView):
     queryset = models.PriceCollectContent.objects.all()
     serializer_class = serializers.PriceCollectContentSerializer
     filter_backends = (DjangoFilterBackend, filters.OrderingFilter)
+    filter_fields = ('price_collect', )
     pagination_class = pagination.LimitOffsetPagination

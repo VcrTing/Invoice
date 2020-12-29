@@ -12,8 +12,8 @@ class Listing(models.Model):
     listing_time = models.DateTimeField(verbose_name='报价日期', default=timezone.now)
 
     pay_way = models.SmallIntegerField(choices=(
-        (0, '线下支付'),
-        (1, '线上支付')
+        (0, '支票'),
+        (1, '现金')
     ), default=1, verbose_name='付款方式', null=True)
 
     pay_contact_named = models.CharField(max_length=80, null=True, blank=True, verbose_name='销售员名称')

@@ -25,11 +25,14 @@ from rest_framework.documentation import include_docs_urls
 from . import settings
 
 # VIEWS REST API
+from Appis.user import views_rest_api as userREST
 from Appis.member import views_rest_api as memberREST
 from Appis.freight import views_rest_api as freightREST
 from Appis.listing import views_rest_api as listingREST
 
 router = routers.DefaultRouter()
+
+router.register('user', userREST.UserProfileViewSet)
 
 router.register('tag', freightREST.TagViewSet)
 router.register('area', memberREST.AreaViewSet)

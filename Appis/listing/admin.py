@@ -37,11 +37,6 @@ class ListingAdmin(admin.ModelAdmin):
                 'draft_status', 'merge_status', 'pay_status'
             ),
         }),
-        ("内容", {
-            "fields": (
-                'content', 
-            ),
-        }),
         ("其他", {
             "fields": (
                 'mark', 'status', 'add_time'

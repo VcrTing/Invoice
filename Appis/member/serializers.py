@@ -65,7 +65,7 @@ class PriceCollectContentSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.PriceCollectContent
         depth = 3
-        fields = [ 'id', 'price_collect_id', 'content' ]
+        fields = [ 'id', 'price_collect_id', 'price_collect', 'content' ]
 
     def create(self, validated_data):
         price_collect_id = validated_data.pop('price_collect_id')
