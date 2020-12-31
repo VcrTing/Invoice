@@ -54,6 +54,7 @@ from Appis.listing import views as listing
 
 urlpatterns = [
     path('', TemplateView.as_view(template_name="index.html")),
+    path('tool/import/', web.ImportView.as_view()),
     
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),

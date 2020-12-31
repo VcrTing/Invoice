@@ -2,6 +2,7 @@ from django.db import models
 from django.utils import timezone
 
 from Appis.member import models as member_models
+from Appis import comp as comp
 # Create your models here.
 
 class Tag(models.Model):
@@ -24,15 +25,7 @@ class Freight(models.Model):
     # 菜品
     num = models.CharField(max_length=80, null=True, blank=True, verbose_name='菜品编号')
     named = models.CharField(max_length=80, null=True, blank=True, verbose_name='菜品名称')
-    unit = models.SmallIntegerField(choices=(
-        (0, '斤'),
-        (1, '包'),
-        (2, '件'),
-        (3, '扎'),
-        (4, '两'),
-        (5, '磅'),
-        (6, '条'),
-    ), default=1, verbose_name='单位', null=True)
+    unit = models.SmallIntegerField(choices=comp.UNIT, default=1, verbose_name='单位', null=True)
     tag = models.ManyToManyField(to = Tag, related_name='tag', blank=True, verbose_name='标签')
     price = models.CharField(max_length=90, verbose_name='默认单价', default='0.00')
 

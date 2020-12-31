@@ -1,0 +1,96 @@
+{% extends './base.html' %}
+{% load staticfiles %}
+
+{% block center %}
+
+<div class="" id="app">
+  <!-- select v-model="f" class="p-2 mb-2">
+    <option v-for="(f, index) in files" :key="index" :value="index" v-html="f.named"></option>
+  </select-->
+  <br/>
+  <select v-model="t" class="p-2 mb-2">
+    <option v-for="(f, index) in typed" :key="index" :value="index" v-html="f.named"></option>
+  </select>
+  <br/>
+  <button class="p-2" @click="submit">提交</button>
+</div>
+
+<script>
+  const head = 'http://'
+  const _root = head + '{{ request.get_host }}'
+
+  const v = new Vue({
+    el: "#app",
+    data: {
+      files: [
+        
+      ],
+      typed: [
+        {
+          id: 0,
+          named: 'freight'
+        }
+      ],
+      f: 0,
+      t: 0
+    },
+    mounted() {
+      // this.loadFile()
+    },
+    methods: {
+      loadFile() {
+        $.ajax({
+            url: _root + '/tool/import/?option=load',
+            type: 'POST',
+            headers: {
+                Accept: "application/json; charset=utf-8",
+            },
+            beforeSend:function(xhr, settings){
+                xhr.setRequestHeader("X-CSRFToken", $("input[name='csrfmiddlewaretoken']").val() );
+            },
+            success: function(e) {
+                if ((e['status'] == 'true') || (e['status'] == true)) {
+                    console.log(e['files'])
+                    this.files = e['files']
+                    
+                    // loadWorking(this.working)
+                } else {
+                    alert('錯誤！！！')
+                }
+            }
+        })
+      },
+
+      submit() {
+        const data = {
+          named: this.typed[this.t].named
+        }
+        console.log(data)
+        $.ajax({
+            url: _root + '/tool/import/?option=import',
+            data: data,
+            type: 'POST',
+            headers: {
+                Accept: "application/json; charset=utf-8",
+            },
+            beforeSend:function(xhr, settings){
+                xhr.setRequestHeader("X-CSRFToken", $("input[name='csrfmiddlewaretoken']").val() );
+            },
+            success: function(e) {
+              console.log(e)
+            }
+        })
+      }
+    }
+  })
+</script>
+
+<style>
+  .p-2 {
+    padding: 6px 12px
+  }
+  .mb-2 {
+    margin-bottom: 6px;
+  }
+</style>
+{% endblock center %}

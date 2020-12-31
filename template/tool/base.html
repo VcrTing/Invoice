@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% load staticfiles %}
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <title>
+          工具页
+        </title>
+    </head>
+    <body>
+        <script  type="text/javascript" src="https://lib.baomitu.com/jquery/3.5.1/jquery.min.js"></script>
+        <script  type="text/javascript" src="https://lib.baomitu.com/vue/2.6.12/vue.min.js"></script>
+
+
+        <div class="feed">
+            <div class="feed-bg"></div>
+            <div class="feed-content">
+                <div class="feed-space"></div>
+                <center>
+                    
+                    <!-- 主內容 -->
+                    {% block center %}
+                    {% endblock center %}
+
+                </center>
+            </div>
+            {% csrf_token %}
+        </div>
+
+        <style>
+            body {
+                overflow: hidden;
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                font-size: 18px;
+                color: #f7f7f7;
+            }
+            .pd-main {
+                padding-left: 15px;
+                padding-right: 15px;
+            }
+            
+            .feed ,
+            .feed-content,
+            .feed-bg {
+                width: 100%;
+                padding: 0;
+                margin: 0;
+                display: block;
+                height: 100vh;
+            }
+            .feed {
+                position: relative;
+            }
+            .feed-bg,
+            .feed-content {
+                position: absolute;
+                top: 0;
+                left: 0;
+            }
+            .feed-bg {
+                background: rgba(255, 174, 200, 1);
+                background-clip: border-box;
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: cover;
+                color: white;
+            }
+            .feed-space {
+                height: 40vh;
+            }
+            .feed-wrapper {
+                width: calc(360px + 7vw);
+                padding: 0;
+                margin: 0 auto;
+                border: none;
+
+                box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2) ;
+                border-radius: 1px;
+                transition: all .3s;
+            }
+            .feed-wrapper:hover {
+                background: rgba(255, 255, 255, 0.1);
+            }
+            
+            @media screen and (max-width: 768px) {
+                .feed-wrapper {
+                    width: 100%;
+                }
+                
+                .feed-space {
+                    height: 24vh;
+                }
+            }
+        </style>
+        <style>
+            
+            .submit {
+                background-color: rgba(255, 255, 255, 0.8);
+                color: #0073aa;
+                border-color: white;
+                transition:  all .3s;
+            }
+            .submit:hover {
+                background-color: rgba(255, 255, 255, 0.9);
+                text-decoration: underline;
+            }
+            .btn {
+                background: none;
+                border: none;
+                margin: 0;
+                padding: 8px 0px;
+                display: block;
+                transition: all .3s;
+                margin-top: 30px;
+                cursor: pointer;
+            }
+            .btn-back {
+                border: 1px solid rgba(255, 255, 255, 0.5);
+            }
+            .btn-back:hover {
+                margin-top: 35px;
+            }
+        </style>
+    </body>
+</html>

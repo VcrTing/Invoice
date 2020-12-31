@@ -58,7 +58,7 @@ class FreightAdmin(admin.ModelAdmin):
             ),
         })
     )
-    list_per_page = 50
+    list_per_page = 400
     empty_value_display = '--'
 
     def get_ordering(self, request):
