@@ -15,10 +15,12 @@ class FreightSerializer(serializers.ModelSerializer):
     """
         清单
     """
+    tag_id = serializers.IntegerField(required = False)
+
     class Meta:
         model = models.Freight
         depth = 3
-        fields = '__all__'
+        fields = ['id', 'num', 'named', 'unit', 'tag', 'tag_id', 'price']
         
 """
 class FreightEveryMemberSerializer(serializers.ModelSerializer):

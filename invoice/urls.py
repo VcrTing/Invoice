@@ -53,13 +53,15 @@ from Appis.freight import views as freight
 from Appis.listing import views as listing
 
 urlpatterns = [
-    path('', TemplateView.as_view(template_name="index.html")),
     path('tool/import/', web.ImportView.as_view()),
     
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
     re_path(r'^media/(?P<path>.*)$',  serve, {'document_root': settings.MEDIA_ROOT}),
     re_path(r'^static/(?P<path>.*)$', serve, {'document_root': settings.STATIC_URL}),
+
+    path('', web.WebView.as_view()),
+    # re_path(r'^/(?P<path>.*)$',  TemplateView.as_view(template_name="index.html")),
 
 ]
 

@@ -37,4 +37,5 @@ class ListingContentViewSet(viewsets.ModelViewSet, generics.ListAPIView):
     queryset = models.ListingContent.objects.all()
     serializer_class = serializers.ListingContentSerializer
     filter_backends = (DjangoFilterBackend, filters.OrderingFilter)
+    filter_fields = ('listing', )
     pagination_class = pagination.LimitOffsetPagination

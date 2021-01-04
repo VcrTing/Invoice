@@ -19,7 +19,8 @@ class ListingSerializer(serializers.ModelSerializer):
             'membery', 'membery_id',
             'price_collect', 'price_collect_id',
             'freight_item_num', 'result_price', 'total_price_freight',
-            'mark'
+            'mark',
+            'pay_contact_named', 'pay_contact_phone', 'pay_contact_email'
         ]
 
     def create(self, validated_data):
