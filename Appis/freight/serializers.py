@@ -20,7 +20,7 @@ class FreightSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Freight
         depth = 3
-        fields = ['id', 'num', 'named', 'unit', 'tag', 'tag_id', 'price']
+        fields = ['id', 'num', 'named', 'unit', 'tag', 'tag_id', 'price', 'is_n', 'status']
         
 """
 class FreightEveryMemberSerializer(serializers.ModelSerializer):

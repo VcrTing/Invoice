@@ -5,10 +5,11 @@ from django.forms.models import model_to_dict
 from django.http import HttpResponsePermanentRedirect, HttpResponse, JsonResponse
 
 import os, json, uuid, time
+from random import choice, sample
 from PIL import Image
 import invoice.settings as settings
 
-from Appis.freight.models import Freight
+from Appis.freight.models import Freight, Tag
 from Appis import comp as comp
 # Create your views here.
 class WebView(View):
@@ -35,11 +36,22 @@ def saveFreight(freight):
     data.num = num
     data.named = named
     data.unit = int(unit)
+    n = choice([2, 3, 4])
+    ids = sample([1, 2, 3, 4], n)
+    
+    # tags = Tag.objects.filter(id__in = ids)
+
+
     if price:
         data.price = int(price)
     else:
         data.unit = 19
-    
+
+    data.save()
+    data.tag.clear()
+    for t in ids:
+        data.tag.add(t)
+
     data.save()
 
 

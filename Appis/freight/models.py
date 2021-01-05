@@ -26,6 +26,7 @@ class Freight(models.Model):
     num = models.CharField(max_length=80, null=True, blank=True, verbose_name='菜品编号')
     named = models.CharField(max_length=80, null=True, blank=True, verbose_name='菜品名称')
     unit = models.SmallIntegerField(choices=comp.UNIT, default=1, verbose_name='单位', null=True)
+    is_n = models.BooleanField(verbose_name='输入框类型是否为整数', default = False)
     tag = models.ManyToManyField(to = Tag, related_name='tag', blank=True, verbose_name='标签')
     price = models.CharField(max_length=90, verbose_name='默认单价', default='0.00')
 

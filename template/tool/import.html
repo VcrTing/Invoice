@@ -61,11 +61,7 @@
         })
       },
 
-      submit() {
-        const data = {
-          named: this.typed[this.t].named
-        }
-        console.log(data)
+      _submit(data) {
         $.ajax({
             url: _root + '/tool/import/?option=import',
             data: data,
@@ -79,6 +75,28 @@
             success: function(e) {
               console.log(e)
             }
+        })
+      },
+      submit() {
+        const data = {
+          named: this.typed[this.t].named
+        }
+        // console.log(data)
+
+        $.ajax({
+          url: _root + '/api/freight',
+            headers: {
+                Accept: "application/json; charset=utf-8",
+            },
+            success: function(e) {
+              
+              if (e.length > 0) {
+                alert('无需导入！')
+              } else {
+                this._submit(data)
+              }
+            }
+
         })
       }
     }

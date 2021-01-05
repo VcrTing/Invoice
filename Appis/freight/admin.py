@@ -35,7 +35,7 @@ class TagAdmin(admin.ModelAdmin):
 @admin.register(models.Freight)
 class FreightAdmin(admin.ModelAdmin):
 
-    list_display = ['num', 'named', 'unit', 'status', 'add_time']
+    list_display = ['num', 'named', 'unit', 'is_n', 'status', 'add_time']
     
     search_fields = ['named', 'unit']
     list_filter = ['status', ]
@@ -49,7 +49,7 @@ class FreightAdmin(admin.ModelAdmin):
         }),
         ("属性", {
             "fields": (
-                'unit', 'tag', 'price'
+                'unit', 'is_n', 'tag', 'price'
             ),
         }),
         ("其他", {
