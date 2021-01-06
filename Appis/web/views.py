@@ -36,7 +36,7 @@ def saveFreight(freight):
     data.num = num
     data.named = named
     data.unit = int(unit)
-    n = choice([2, 3, 4])
+    n = choice([1, 2, 3])
     ids = sample([1, 2, 3, 4], n)
     
     # tags = Tag.objects.filter(id__in = ids)

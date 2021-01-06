@@ -17,6 +17,7 @@ class Listing(models.Model):
     ), default=1, verbose_name='付款方式', null=True)
 
     pay_contact_named = models.CharField(max_length=80, null=True, blank=True, verbose_name='销售员名称')
+    pay_contact_area = models.CharField(max_length=80, null=True, blank=True, verbose_name='销售员电话号码前缀')
     pay_contact_phone = models.CharField(max_length=80, null=True, blank=True, verbose_name='销售员电话号码')
     pay_contact_email = models.CharField(max_length=80, null=True, blank=True, verbose_name='销售员电邮')
     pay_contact_fax = models.CharField(max_length=80, null=True, blank=True, verbose_name='销售员传真')

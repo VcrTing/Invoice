@@ -1,10 +1,11 @@
 from rest_framework import filters, pagination
 from rest_framework import mixins, viewsets, views, status, generics
 from rest_framework.response import Response
+from django.db.models import Q
 from django_filters.rest_framework.backends import DjangoFilterBackend
 
 from . import models
-from Appis.member.models import PriceCollect
+from Appis.member.models import PriceCollect, Membery
 from . import serializers
 
 # REST
@@ -20,13 +21,30 @@ class ListingViewSet(viewsets.ModelViewSet, generics.ListAPIView):
     pagination_class = pagination.LimitOffsetPagination
 
     def get_queryset(self):
-        res = models.Listing.objects.all()
+        status = self.request.query_params.get('status', None)
 
-        pc_num = self.request.query_params.get('price_collect_num', None)
-        if pc_num:
-            pc = PriceCollect.objects.filter(num__icontains = pc_num)
-            pc = [p.id for p in pc]
-            res = res.filter(price_collect__in = pc)
+        res = models.Listing.objects.filter(
+            Q(status = True) )
+
+        search_f = self.request.query_params.get('search_f', None)
+
+        if search_f is not None:
+            num = self.request.query_params.get('num', None)
+            price_num = self.request.query_params.get('price_num', None)
+            membery_num = self.request.query_params.get('membery_num', None)
+            membery_named = self.request.query_params.get('membery_named', None)
+
+            if num:
+                res = res.filter(num__icontains = num)
+            if price_num:
+                pcs = PriceCollect.objects.filter(num__icontains = price_num)
+                res = res.filter(price_collect__in = pcs)
+            if membery_num:
+                ms = Membery.objects.filter(num__icontains = membery_num)
+                res = res.filter(membery__in = ms)
+            if membery_named:
+                ms = Membery.objects.filter(named__icontains = membery_named)
+                res = res.filter(membery__in = ms)
 
         return res
 

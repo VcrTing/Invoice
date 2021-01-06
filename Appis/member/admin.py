@@ -29,7 +29,7 @@ class AreaAdmin(admin.ModelAdmin):
 @admin.register(models.Membery)
 class MemberyAdmin(admin.ModelAdmin):
 
-    list_display = ['num', 'named', 'addr', 'status', 'add_time']
+    list_display = ['num', 'named', 'area', 'addr', 'status', 'add_time']
     
     search_fields = ['named', ]
     list_filter = ['status', ]

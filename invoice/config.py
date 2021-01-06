@@ -1,5 +1,5 @@
 
-TEST = True
+TEST = False
 
 DATABASE = {
   'ENGINE': 'django.db.backends.mysql',

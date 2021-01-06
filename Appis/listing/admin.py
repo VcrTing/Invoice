@@ -29,7 +29,7 @@ class ListingAdmin(admin.ModelAdmin):
         }),
         ("收货负责人", {
             "fields": (
-                'pay_contact_named', 'pay_contact_phone', 'pay_contact_email', 'pay_contact_fax'
+                'pay_contact_named', 'pay_contact_area', 'pay_contact_phone', 'pay_contact_email', 'pay_contact_fax'
             ),
         }),
         ("状态", {
