@@ -66,7 +66,7 @@ class PriceCollect(models.Model):
         
 class PriceCollectContent(models.Model): 
     # 报价内容
-    content = models.TextField(max_length=9200, default='--', null=True, blank=True, verbose_name='清单内容')
+    content = models.TextField(max_length=52000, default='--', null=True, blank=True, verbose_name='清单内容')
 
     price_collect = models.ForeignKey(PriceCollect, verbose_name='所属报价单', on_delete=models.CASCADE, null=True)
 

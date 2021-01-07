@@ -50,7 +50,7 @@ class Listing(models.Model):
 
 class ListingContent(models.Model):
 
-    content = models.TextField(max_length=7200, default='--', null=True, blank=True, verbose_name='发票内容')
+    content = models.TextField(max_length=52000, default='--', null=True, blank=True, verbose_name='发票内容')
 
     listing = models.ForeignKey(Listing, verbose_name='所属发票', on_delete=models.CASCADE, null=True)
 
