@@ -1,5 +1,12 @@
+import platform
 
-TEST = False
+print(platform.system())
+ 
+_TEST = True
+if (platform.system() == 'Linux'):
+  _TEST = False
+
+TEST = _TEST
 
 DATABASE = {
   'ENGINE': 'django.db.backends.mysql',
