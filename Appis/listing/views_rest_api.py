@@ -30,12 +30,16 @@ class ListingViewSet(viewsets.ModelViewSet, generics.ListAPIView):
 
         if search_f is not None:
             num = self.request.query_params.get('num', None)
+
+            end_timed = self.request.query_params.get('end_timed', None)
+            start_timed = self.request.query_params.get('start_timed', None)
+
             price_num = self.request.query_params.get('price_num', None)
             membery_num = self.request.query_params.get('membery_num', None)
             membery_named = self.request.query_params.get('membery_named', None)
 
             if num:
-                res = res.filter(num__icontains = num)
+                res = res.filter( Q(num__icontains = num) )
             if price_num:
                 pcs = PriceCollect.objects.filter(num__icontains = price_num)
                 res = res.filter(price_collect__in = pcs)
@@ -45,6 +49,9 @@ class ListingViewSet(viewsets.ModelViewSet, generics.ListAPIView):
             if membery_named:
                 ms = Membery.objects.filter(named__icontains = membery_named)
                 res = res.filter(membery__in = ms)
+                
+            if (start_timed is not None) and (end_timed is not None):
+                res = res.filter( Q(listing_time__range = (start_timed, end_timed)) )
 
         return res
 
