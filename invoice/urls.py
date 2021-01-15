@@ -61,9 +61,12 @@ urlpatterns = [
     re_path(r'^static/(?P<path>.*)$', serve, {'document_root': settings.STATIC_URL}),
 
     path('', web.WebView.as_view()),
+    # re_path(r'^home/(?P<path>.*)$',  web.WebView.as_view()),
     # re_path(r'^/(?P<path>.*)$',  TemplateView.as_view(template_name="index.html")),
 
 ]
+
+# handler404 = 'Appis.web.views.handler_404'
 
 # ETRA
 TEST = True

@@ -62,7 +62,7 @@
       },
 
       _submit(data) {
-        return
+        
         $.ajax({
             url: _root + '/tool/import/?option=import',
             data: data,
@@ -91,7 +91,7 @@
                 Accept: "application/json; charset=utf-8",
             },
             success: function(e) {
-              console.log(e)
+              console.log('submit', e)
               if (e.length > 0) {
                 alert('无需导入！')
               } else {

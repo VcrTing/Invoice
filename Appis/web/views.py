@@ -18,6 +18,9 @@ class WebView(View):
 
 import csv 
 
+def handler_404(request):
+    return render(request, 'index.html')
+
 def saveFreight(freight):
     num = freight[0]
     named = freight[1]
