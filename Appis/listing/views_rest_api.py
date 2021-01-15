@@ -49,9 +49,10 @@ class ListingViewSet(viewsets.ModelViewSet, generics.ListAPIView):
             if membery_named:
                 ms = Membery.objects.filter(named__icontains = membery_named)
                 res = res.filter(membery__in = ms)
-                
+            
             if (start_timed is not None) and (end_timed is not None):
-                res = res.filter( Q(listing_time__range = (start_timed, end_timed)) )
+                if (start_timed is not '') and (end_timed is not ''):
+                    res = res.filter( Q(listing_time__range = (start_timed, end_timed)) )
 
         return res
 
