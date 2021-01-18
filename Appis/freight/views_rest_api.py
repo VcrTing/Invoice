@@ -26,7 +26,7 @@ class FreightViewSet(viewsets.ModelViewSet, generics.ListAPIView):
     queryset = models.Freight.objects.all()
     serializer_class = serializers.FreightSerializer
     filter_backends = (DjangoFilterBackend, filters.OrderingFilter)
-    filter_fields = ('status', 'tag')
+    filter_fields = ('status', 'tag', 'named', 'num')
     ordering_fields = ('add_time', )
     pagination_class = pagination.LimitOffsetPagination
     
