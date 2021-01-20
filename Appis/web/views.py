@@ -10,6 +10,7 @@ from PIL import Image
 import invoice.settings as settings
 
 from Appis.freight.models import Freight, Tag
+from Appis.listing import models as model_listing
 from Appis import comp as comp
 # Create your views here.
 class WebView(View):
@@ -110,11 +111,17 @@ class ImportView(View):
 class PdfView(View):
     def get(self, request):
 
-        option = self.request.GET.get('option', None)
+        option = request.GET.get('option', None)
 
         if option == 'prices':
             print('')
         elif option == 'combine':
             print('combine')
+
+        listing_id = request.GET.get('listing_id', None)
+        listing = model_listing.Listing.objects.filter(id = listing_id)
+        listing_content = model_listing.ListingContent.objects.filter(listing = listing_id)
+        print(listing_id)
+        print(listing_content)
 
         return render(request, 'pdf/invoice.html')

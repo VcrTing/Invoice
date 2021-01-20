@@ -17,38 +17,19 @@
   </div>
   <div class="row">
     <div class="col-sm-12">
-      <table class="w-100 br-1">
-        <tbody>
-          <tr>
-            <td>
-              AAA
-            </td>
-            <td>
-              BBB
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="w-100">
+        <div class="br-1 msg-left p-1">
+          {% include './invoice/pdf_invoice_member.html' %}
+        </div>
+        <div class="br-1 msg-right p-1">
+          {% include './invoice/pdf_invoice_msg.html' %}
+        </div>
+      </div>
     </div>
   </div>
   <div class="row mt-1">
     <div class="col-sm-12">
-
-      <table class="table">
-        <thead>
-          <tr>
-            <td>序号</td>
-            <td>名称</td>
-            <td>数量</td>
-            <td>价格</td>
-            <td>操作</td>
-          </tr>
-        </thead>
-        <tbody id="listing">
-  
-        </tbody>
-      </table>
-
+      {% include './invoice/pdf_invoice_data.html' %}
     </div>
   </div>
   <div class="row mt-4 pt-4">
@@ -82,25 +63,28 @@
       }
       this.loadData()
 
-      // print()
+      print()
     },
     methods: {
       loadData() {
-        
-        $('#listing').html('')
+        const listing = $('#listing')
+        listing.html('')
         for (const i in this.db) {
           const e = this.db[i]
           const html = `
-            <tr>
+            <tr class="pdf-tr">
               <td>${i}</td>
+              <td>A0${i}</td>
               <td>${e.name}</td>
               <td>${e.num}</td>
               <td>${e.price}</td>
               <td></td>
+              <td></td>
             </tr>
           `
-          $('#listing').append(html)
+          listing.append(html)
         }
+        listing.append(invoiceFooter)
       }
     }
   })
