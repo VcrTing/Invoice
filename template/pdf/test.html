@@ -1,0 +1,110 @@
+{% extends './base_pdf.html' %}
+{% load staticfiles %}
+
+{% block center %}
+<div class="container-fuild p-5" id="app">
+  <div class="row">
+    <div class="col-sm-12 text-center fs-vw-6">
+      Invoice
+    </div>
+  </div>
+  <div class="col-sm-12 fs-vw-3">
+    <table>
+      <thead>
+        <tr>
+          <td>名称</td>
+          <td></td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>时间</td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="col-sm-12 fs-vw-3">
+    <table>
+      <thead>
+        <tr>
+          <td>序号</td>
+          <td>名称</td>
+          <td>数量</td>
+          <td>价格</td>
+          <td>操作</td>
+        </tr>
+      </thead>
+      <tbody id="listing">
+
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<script>
+  const v = new Vue(
+  {
+    el: '#app',
+    data: {
+      db: []
+    },
+    computed: {
+      
+    },
+    mounted() {
+      for (var i= 0; i< 100; i++ ) {
+        this.db.push({
+          id: i,
+          name: '芹菜0' + i,
+          num: 1,
+          price: '2.0'
+        })
+      }
+      this.loadData()
+
+      print()
+    },
+    methods: {
+      loadData() {
+        
+        $('#listing').html('')
+        for (const i in this.db) {
+          const e = this.db[i]
+          const html = `
+            <tr>
+              <td>${i}</td>
+              <td>${e.name}</td>
+              <td>${e.num}</td>
+              <td>${e.price}</td>
+              <td></td>
+            </tr>
+          `
+          $('#listing').append(html)
+        }
+      }
+    }
+  })
+
+  console.log(v)
+</script>
+
+<style>
+  .fs-vw-2 {
+    font-size: 2vw;
+  }
+  .fs-vw-3 {
+    font-size: 3vw;
+  }
+  .fs-vw-6 {
+    font-size: 6vw;
+  }
+  table {
+    border: 1px solid #000000;
+    width: 100%;
+  }
+  table td {
+    padding: 0px 12px;
+  }
+</style>
+{% endblock %}

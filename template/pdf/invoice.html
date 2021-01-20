@@ -1,0 +1,114 @@
+{% extends './base_pdf.html' %}
+{% load staticfiles %}
+
+{% block center %}
+<div class="container-fuild p-5" id="app">
+  <div class="row">
+    <div class="col-sm-12 ">
+      {% include './components/pdf_header.html' %}
+    </div>
+    <div class="col-sm-12">
+      
+      <div class="mt-2 fw-b fs-vw-30">
+        发票
+      </div>
+
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <table class="w-100 br-1">
+        <tbody>
+          <tr>
+            <td>
+              AAA
+            </td>
+            <td>
+              BBB
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="row mt-1">
+    <div class="col-sm-12">
+
+      <table class="table">
+        <thead>
+          <tr>
+            <td>序号</td>
+            <td>名称</td>
+            <td>数量</td>
+            <td>价格</td>
+            <td>操作</td>
+          </tr>
+        </thead>
+        <tbody id="listing">
+  
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+  <div class="row mt-4 pt-4">
+    <div class="col-sm-6">
+
+    </div>
+    <div class="col-sm-6">
+      {% include './components/pdf_footer.html' %}
+    </div>
+  </div>
+</div>
+
+<script>
+  const v = new Vue(
+  {
+    el: '#app',
+    data: {
+      db: []
+    },
+    computed: {
+      
+    },
+    mounted() {
+      for (var i= 0; i< 100; i++ ) {
+        this.db.push({
+          id: i,
+          name: '芹菜0' + i,
+          num: 1,
+          price: '2.0'
+        })
+      }
+      this.loadData()
+
+      // print()
+    },
+    methods: {
+      loadData() {
+        
+        $('#listing').html('')
+        for (const i in this.db) {
+          const e = this.db[i]
+          const html = `
+            <tr>
+              <td>${i}</td>
+              <td>${e.name}</td>
+              <td>${e.num}</td>
+              <td>${e.price}</td>
+              <td></td>
+            </tr>
+          `
+          $('#listing').append(html)
+        }
+      }
+    }
+  })
+
+  console.log(v)
+</script>
+
+<style>
+
+</style>
+{% endblock %}

@@ -54,6 +54,7 @@ from Appis.listing import views as listing
 
 urlpatterns = [
     path('tool/import/', web.ImportView.as_view()),
+    path('pdf/print/', web.PdfView.as_view()),
     
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),

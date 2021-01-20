@@ -106,3 +106,15 @@ class ImportView(View):
                     importFreight(_file)
         
         return JsonResponse(res)
+
+class PdfView(View):
+    def get(self, request):
+
+        option = self.request.GET.get('option', None)
+
+        if option == 'prices':
+            print('')
+        elif option == 'combine':
+            print('combine')
+
+        return render(request, 'pdf/invoice.html')
