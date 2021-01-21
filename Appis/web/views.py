@@ -122,6 +122,10 @@ class PdfView(View):
         listing = model_listing.Listing.objects.filter(id = listing_id)
         listing_content = model_listing.ListingContent.objects.filter(listing = listing_id)
         print(listing_id)
+        print(listing[0].membery.named)
         print(listing_content)
 
-        return render(request, 'pdf/invoice.html')
+        return render(request, 'pdf/invoice.html', {
+            'membery': listing[0].membery.named,
+            'listing_id': listing_id
+        })

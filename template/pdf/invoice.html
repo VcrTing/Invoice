@@ -43,6 +43,12 @@
 </div>
 
 <script>
+  const head = 'http://'
+  const _root = head + '{{ request.get_host }}'
+  const api = _root + '/api'
+
+  const listing_id = '{{ listing_id }}'
+
   const v = new Vue(
   {
     el: '#app',
@@ -63,7 +69,7 @@
       }
       this.loadData()
 
-      print()
+      // print()
     },
     methods: {
       loadData() {
@@ -85,6 +91,21 @@
           listing.append(html)
         }
         listing.append(invoiceFooter)
+      },
+      loadingLC() {
+        $.ajax({
+          url: api + '/listing_content/?format=json&listing=' + listing_id,
+          type: 'GET',
+          headers: {
+              Accept: "application/json; charset=utf-8",
+          },
+          beforeSend:function(xhr, settings){
+              xhr.setRequestHeader("X-CSRFToken", $("input[name='csrfmiddlewaretoken']").val() );
+          },
+          success: function(e) {
+            console.log(e)
+          }
+        })
       }
     }
   })
