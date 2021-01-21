@@ -1,0 +1,80 @@
+{% extends './base_pdf.html' %}
+{% load staticfiles %}
+
+{% block center %}
+<div class="container-fuild p-5" id="app">
+  <div class="row">
+    <div class="col-sm-12 ">
+      {% include './components/pdf_header.html' %}
+    </div>
+    <div class="col-sm-12">
+      
+      <div class="mt-2 fw-b fs-vw-30">
+        订货单
+      </div>
+
+    </div>
+  </div>
+  {% if status == True %}
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="w-100">
+        <div class="br-1 msg-left p-1">
+          {% include './combine/pdf_combine_member.html' %}
+        </div>
+        <div class="br-1 msg-right p-1">
+          {% include './combine/pdf_combine_msg.html' %}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-1">
+    <div class="col-sm-12">
+      {% include './combine/pdf_combine_data.html' %}
+    </div>
+  </div>
+  <div class="row mt-4 pt-4">
+    <div class="col-sm-6">
+
+    </div>
+    <div class="col-sm-6">
+      
+    </div>
+  </div>
+  {% else %}
+  <div class="p-5">無結果</div>
+  {% endif %}
+</div>
+
+<script>
+
+  // const buy_id = '{{ buy.id }}'
+  
+  loadData = function(db) {
+    
+    const listing = $('#listing')
+    listing.html('')
+    for (const i in db) {
+      const e = db[i]
+
+      // const unit = ser_unit(e.unit)
+      const html = `
+      
+      `
+      listing.append(html)
+    }
+    
+  }
+  
+  loadingLC = function() {
+    
+  }
+  loadingLC()
+</script>
+
+<style>
+  .prices-msg-table {
+    height: 9.3vw
+  }
+</style>
+{% endblock %}

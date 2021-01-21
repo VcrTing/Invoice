@@ -1,0 +1,106 @@
+{% extends './base_pdf.html' %}
+{% load staticfiles %}
+
+{% block center %}
+<div class="container-fuild p-5" id="app">
+  <div class="row">
+    <div class="col-sm-12 ">
+      {% include './components/pdf_header.html' %}
+    </div>
+    <div class="col-sm-12">
+      
+      <div class="mt-2 fw-b fs-vw-30">
+        報價單
+      </div>
+
+    </div>
+  </div>
+  {% if status == True %}
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="w-100">
+        <div class="br-1 msg-left p-1">
+          {% include './prices/pdf_prices_member.html' %}
+        </div>
+        <div class="br-1 msg-right p-1">
+          {% include './prices/pdf_prices_msg.html' %}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-1">
+    <div class="col-sm-12">
+      {% include './prices/pdf_prices_data.html' %}
+    </div>
+  </div>
+  <div class="row mt-4 pt-4">
+    <div class="col-sm-6">
+
+    </div>
+    <div class="col-sm-6">
+      {% include './components/pdf_footer.html' %}
+    </div>
+  </div>
+  {% else %}
+  <div class="p-5">無結果</div>
+  {% endif %}
+</div>
+
+<script>
+
+  const prices_id = '{{ prices.id }}'
+  
+  loadData = function(db) {
+    
+    const listing = $('#listing')
+    listing.html('')
+    for (const i in db) {
+      const e = db[i]
+
+      const unit = ser_unit(e.unit)
+      const html = `
+        <tr class="pdf-tr">
+          <td>${i + 1}</td>
+          <td>${e.num}</td>
+          <td class="text-left pl-1">${e.named}</td>
+          <td class="text-right pr-1">
+            
+            <div class="count-left pr-3">$${e.price}</div>  
+            <div class="count-right">/${unit}</div>  
+          </td>
+        </tr>
+      `
+      listing.append(html)
+    }
+    
+  }
+  
+  loadingLC = function() {
+    $.ajax({
+      url: api + '/price_collect_content/?format=json&price_collect=' + prices_id,
+      type: 'GET',
+      headers: {
+          Accept: "application/json; charset=utf-8",
+      },
+      beforeSend:function(xhr, settings){
+          xhr.setRequestHeader("X-CSRFToken", $("input[name='csrfmiddlewaretoken']").val() );
+      },
+      success: function(e) {
+        
+        let content = e[0].content
+        if (content != undefined) {
+          content = JSON.parse(content)
+          loadData(content)
+        }
+      }
+    })
+  }
+  loadingLC()
+</script>
+
+<style>
+  .prices-msg-table {
+    height: 9.3vw
+  }
+</style>
+{% endblock %}

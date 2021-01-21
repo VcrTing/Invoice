@@ -10,6 +10,7 @@ from PIL import Image
 import invoice.settings as settings
 
 from Appis.freight.models import Freight, Tag
+from Appis.member import models as model_member
 from Appis.listing import models as model_listing
 from Appis import comp as comp
 # Create your views here.
@@ -109,23 +110,50 @@ class ImportView(View):
         return JsonResponse(res)
 
 class PdfView(View):
+    def ser_payment(self, payment):
+        if payment == 0:
+            return '支票'
+        return '现金'
+
     def get(self, request):
+        res = { 
+            'status': False
+        }
+        page = 'pdf/invoice.html'
 
         option = request.GET.get('option', None)
+        try:
+            if option == 'prices':
+                page = 'pdf/prices.html'
+                prices_id = request.GET.get('prices_id', None)
+                if prices_id:
+                    prices = model_member.PriceCollect.objects.filter(id = prices_id)[0]
+                    
+                    res = {
+                        'status': True,
+                        'membery': prices.membery,
+                        'prices': prices
+                    }
 
-        if option == 'prices':
-            print('')
-        elif option == 'combine':
-            print('combine')
+            elif option == 'combine':
+                page = 'pdf/combine.html'
+                res = {
+                    'status': True,
+                }
 
-        listing_id = request.GET.get('listing_id', None)
-        listing = model_listing.Listing.objects.filter(id = listing_id)
-        listing_content = model_listing.ListingContent.objects.filter(listing = listing_id)
-        print(listing_id)
-        print(listing[0].membery.named)
-        print(listing_content)
+            listing_id = request.GET.get('listing_id', None)
+            if listing_id:
+                listing = model_listing.Listing.objects.filter(id = listing_id)[0]
+                area = model_member.Area.objects.filter(id = listing.pay_contact_area)
+                
+                res = {
+                    'status': True,
+                    'membery': listing.membery,
+                    'listing': listing,
+                    'area': area[0],
+                    'payment': self.ser_payment(listing.pay_way)
+                }
+        except:
+            pass
 
-        return render(request, 'pdf/invoice.html', {
-            'membery': listing[0].membery.named,
-            'listing_id': listing_id
-        })
+        return render(request, page, res)

@@ -3,11 +3,11 @@
     <tbody class="">
       <tr>
         <td width="48%">發票編號：</td>
-        <td>000</td>
+        <td>{{ listing.num }}</td>
       </tr>
       <tr>
         <td>發票日期：</td>
-        <td>000</td>
+        <td>{{ listing.listing_time| date:"Y-m-d" }}</td>
       </tr>
       <tr>
         <td>參考編號：</td>
@@ -15,11 +15,11 @@
       </tr>
       <tr>
         <td>客戶編號：</td>
-        <td>000</td>
+        <td>{{ membery.num }}</td>
       </tr>
       <tr>
         <td>付款方式：</td>
-        <td>000</td>
+        <td>{{ payment }}</td>
       </tr>
       <tr>
         <td>銷售員：</td>

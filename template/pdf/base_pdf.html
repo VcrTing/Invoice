@@ -13,17 +13,66 @@
     <body>
       <script>
         // https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js
-        // https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.12/vue.common.dev.min.js
+        // https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.12/vue.min.js
 
         // https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css
         // https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js
       </script>
         <script  type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script  type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.12/vue.common.dev.min.js"></script>
+        <script  type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.12/vue.common.min.js"></script>
         
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css">
         <script  type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
 
+        <script>
+          const head = 'http://'
+          const _root = head + '{{ request.get_host }}'
+          const api = _root + '/api'
+          
+const unitList = [
+  [0, '斤'],
+  [1, '包'],
+  [2, '件'],
+  [3, '扎'],
+  [4, '兩'],
+  [5, '磅'],
+  [6, '條'],
+  [7, '張'],
+  [8, '盒'],
+  [9, '箱'],
+  [10, '隻'],
+  [11, '排'],
+  [12, '枝'],
+  [13, '桶'],
+  [14, '個'],
+  [15, '次'],
+  [16, '樽'],
+  [17, '罐'],
+  [18, '板'],
+  [19, '串'],
+  [100, '']
+]
+  ser_unit = function (unit) {
+    const res = unitList.filter((e) => {
+      if (e[0] == unit) { return true } return false
+    })
+    return res[0][1]
+  }
+  
+  floatAdd = function (arg1, arg2) {
+    let r1, r2, m
+    try { r1 = arg1.toString().split(".")[1].length } catch (e) { r1 = 0 }
+    try { r2 = arg2.toString().split(".")[1].length } catch(e){ r2 = 0 }
+    m = Math.pow(10, Math.max(r1, r2))
+    return (arg1 * m + arg2 * m) / m
+  }
+  floatMul = function (arg1, arg2 ) {
+    let m = 0, s1 = arg1.toString(), s2 = arg2.toString()
+    try { m += s1.split(".")[1].length } catch (e) { }
+    try { m += s2.split(".")[1].length } catch (e) { }
+    return Number(s1.replace(".", "")) * Number(s2.replace(".", "")) / Math.pow(10, m)
+  }
+        </script>
         <div class="pdf-file-style">
           <center>
               
@@ -53,6 +102,21 @@
 
           .pdf-table {
             
+          }
+          
+          .count-left,
+          .count-right {
+            display: block;
+            float: left;
+          }
+          .count-left {
+            width: 61%;
+            padding-right: 2px;
+            text-align: right;
+          }
+          .count-right {
+            width: 39%;
+            text-align: left;
           }
 
           .br-1,

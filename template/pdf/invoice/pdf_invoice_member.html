@@ -3,11 +3,11 @@
     <tbody class="">
       <tr>
         <td width="18%">客戶：</td>
-        <td colspan="2">0000</td>
+        <td colspan="2">{{ membery.named }}</td>
       </tr>
       <tr>
         <td>地址：</td>
-        <td colspan="2">0000</td>
+        <td colspan="2">{{ membery.addr }}</td>
       </tr>
       <tr>
         <td colspan="3">&nbsp;</td>
@@ -15,21 +15,21 @@
       <tr>
         <td>聯絡人：</td>
 
-        <td width="40%">0000</td>
+        <td width="40%">{{ listing.pay_contact_named }}</td>
 
         <td></td>
       </tr>
       <tr>
         <td>電話：</td>
 
-        <td>0&nbsp;0000</td>
+        <td>{{ area.area }}&nbsp;{{ listing.pay_contact_phone }}</td>
 
         <td>傳真：</td>
       </tr>
       <tr>
         <td>電郵地址：</td>
 
-        <td colspan="2">0000</td>
+        <td colspan="2">{% if listing.pay_contact_email is not None %} {{ listing.pay_contact_email }} {% endif %}</td>
         <!-- td v-else width="40%">
           
           <input v-model="member_contact_email" class="pdf-input" placeholder="電郵地址，可以為空">
