@@ -17,15 +17,10 @@
   </div>
   {% if status == True %}
   <div class="row">
-    <div class="col-sm-12">
-      <div class="w-100">
-        <div class="br-1 msg-left p-1">
-          {% include './combine/pdf_combine_member.html' %}
-        </div>
-        <div class="br-1 msg-right p-1">
-          {% include './combine/pdf_combine_msg.html' %}
-        </div>
-      </div>
+    <div class="col-sm-12 ">
+
+      {% include './combine/pdf_combine_msg.html' %}
+      
     </div>
   </div>
   <div class="row mt-1">
@@ -57,9 +52,15 @@
     for (const i in db) {
       const e = db[i]
 
-      // const unit = ser_unit(e.unit)
+      const unit = ser_unit(e.unit)
       const html = `
-      
+        <tr class="pdf-tr">
+          <td>${ i + 1 }</td>
+          <td>${ e.num }</td>
+          <td class="text-left pl-1">${ e.named }</td>
+          <td>${ e.count }</td>
+          <td>${ unit }</td>
+        </tr>
       `
       listing.append(html)
     }
@@ -67,7 +68,16 @@
   }
   
   loadingLC = function() {
-    
+
+    let res = localStorage.getItem('combine_listing_content_list')
+
+    if ((res != null) && (res != '') && (res != undefined)) {
+      const combineList = JSON.parse(res)
+      if (combineList.length > 0) {
+        console.log(combineList)
+        loadData(combineList)
+      }
+    } 
   }
   loadingLC()
 </script>

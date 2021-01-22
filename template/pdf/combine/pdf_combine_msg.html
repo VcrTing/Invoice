@@ -1,0 +1,32 @@
+<table class="w-100 br-1 fs-vw-18">
+  <tr>
+    <td class="pl-4 pt-3">
+
+      含發票單編號：&nbsp;&nbsp;
+      <span id="includeNumed"></span>
+    </td>
+  </tr>
+  <tr>
+    <td class="pl-4 pb-3 pt-1">
+
+      創建時間：&nbsp;&nbsp;
+      <span id="createdTimed">{{ createdTimed| date:"Y-m-d" }}</span>
+    </td>
+  </tr>
+</table>
+
+<script>
+  const iNums = []
+  const res = localStorage.getItem('combine_listing_num_list')
+  
+  $('#includeNumed').html('')
+  if ((res != null) && (res != '') && (res != undefined)) {
+    const combineNums = JSON.parse(res)
+    
+    $('#includeNumed').html(
+      combineNums.join('、')
+    )
+  } else {
+    // alert('未搜集到所包含的发票单号信息')
+  }
+</script>

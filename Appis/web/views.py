@@ -4,7 +4,7 @@ from django.db.models import Q
 from django.forms.models import model_to_dict
 from django.http import HttpResponsePermanentRedirect, HttpResponse, JsonResponse
 
-import os, json, uuid, time
+import os, json, uuid, time, datetime
 from random import choice, sample
 from PIL import Image
 import invoice.settings as settings
@@ -125,9 +125,12 @@ class PdfView(View):
         try:
             if option == 'prices':
                 page = 'pdf/prices.html'
-                prices_id = request.GET.get('prices_id', None)
+                prices_id = request.GET.get('pcc_id', None)
+                print(prices_id)
                 if prices_id:
-                    prices = model_member.PriceCollect.objects.filter(id = prices_id)[0]
+                    prices = model_member.PriceCollect.objects.filter(id = prices_id)
+                    print(prices)
+                    prices = prices[0]
                     
                     res = {
                         'status': True,
@@ -139,21 +142,24 @@ class PdfView(View):
                 page = 'pdf/combine.html'
                 res = {
                     'status': True,
+                    'createdTimed': datetime.datetime.now()
                 }
 
-            listing_id = request.GET.get('listing_id', None)
-            if listing_id:
-                listing = model_listing.Listing.objects.filter(id = listing_id)[0]
-                area = model_member.Area.objects.filter(id = listing.pay_contact_area)
-                
-                res = {
-                    'status': True,
-                    'membery': listing.membery,
-                    'listing': listing,
-                    'area': area[0],
-                    'payment': self.ser_payment(listing.pay_way)
-                }
+            else:
+                listing_id = request.GET.get('lc_id', None)
+                if listing_id:
+                    listing = model_listing.Listing.objects.filter(id = listing_id)[0]
+                    area = model_member.Area.objects.filter(id = listing.pay_contact_area)
+                    
+                    res = {
+                        'status': True,
+                        'membery': listing.membery,
+                        'listing': listing,
+                        'area': area[0],
+                        'payment': self.ser_payment(listing.pay_way)
+                    }
         except:
+            print('pdf print 出错')
             pass
 
         return render(request, page, res)
