@@ -23,7 +23,11 @@
         
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css">
         <script  type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
-
+       
+        <!--  -->
+        <script  type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+        <script  type="text/javascript" src="https://cdn.bootcss.com/jspdf/1.3.4/jspdf.debug.js"></script>
+        
         <script>
           const head = 'http://'
           const _root = head + '{{ request.get_host }}'
@@ -72,8 +76,13 @@ const unitList = [
     try { m += s2.split(".")[1].length } catch (e) { }
     return Number(s1.replace(".", "")) * Number(s2.replace(".", "")) / Math.pow(10, m)
   }
+
+  function printPDF( ) {
+    print()
+  }
+  
         </script>
-        <div class="pdf-file-style">
+        <div class="pdf-file-style pdf_dom" id="pdf_dom">
           <center>
               
               <!-- 主內容 -->
@@ -85,6 +94,14 @@ const unitList = [
         </div>
 
         <style>
+
+          ::-webkit-scrollbar {
+            width: 0px }
+
+          body {
+            background: #ffffff;
+          }
+
           .w-100 {
             width: 100% }
           .fw-b {
@@ -131,7 +148,7 @@ const unitList = [
             border-top: 1px solid #000000 !important }
 
           .pdf-file-style {
-            font-family: '微软雅黑' !important;
+            font-family: 'yripmm' !important;
             color: #000000 !important;
             border-color: #000000 !important }
             

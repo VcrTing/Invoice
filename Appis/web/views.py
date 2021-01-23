@@ -3,6 +3,7 @@ from django.views.generic.base import View
 from django.db.models import Q
 from django.forms.models import model_to_dict
 from django.http import HttpResponsePermanentRedirect, HttpResponse, JsonResponse
+from django.views.decorators.clickjacking import xframe_options_deny, xframe_options_exempt
 
 import os, json, uuid, time, datetime
 from random import choice, sample
@@ -114,7 +115,8 @@ class PdfView(View):
         if payment == 0:
             return '支票'
         return '现金'
-
+    
+    @xframe_options_exempt
     def get(self, request):
         res = { 
             'status': False
