@@ -4,10 +4,12 @@ from django.db.models import Q
 from django.forms.models import model_to_dict
 from django.http import HttpResponsePermanentRedirect, HttpResponse, JsonResponse
 from django.views.decorators.clickjacking import xframe_options_deny, xframe_options_exempt
+from django.http import FileResponse
 
-import os, json, uuid, time, datetime
+import io, os, json, uuid, time, datetime
 from random import choice, sample
 from PIL import Image
+from reportlab.pdfgen import canvas
 import invoice.settings as settings
 
 from Appis.freight.models import Freight, Tag
@@ -165,3 +167,30 @@ class PdfView(View):
             pass
 
         return render(request, page, res)
+
+class TestView(View):
+    def get(self, request):
+        import pdfkit
+        pdf = pdfkit.from_url('https://www.baidu.com', 'out.pdf')
+
+        """
+        # Create a file-like buffer to receive PDF data.
+        buffer = io.BytesIO()
+
+        # Create the PDF object, using the buffer as its "file."
+        p = canvas.Canvas(buffer)
+
+        # Draw things on the PDF. Here's where the PDF generation happens.
+        # See the ReportLab documentation for the full list of functionality.
+        p.drawString(100, 100, "<table width='100'><tr><td>AAA</td></tr><tr><td>AAA</td></tr></table>")
+
+        # Close the PDF object cleanly, and we're done.
+        p.showPage()
+        p.save()
+
+        # FileResponse sets the Content-Disposition header so that browsers
+        # present the option to save the file.
+        buffer.seek(0)
+        return FileResponse(buffer, as_attachment=True, filename='hello.pdf')
+        """
+        return FileResponse(pdf, as_attachment=True, filename='out.pdf')
