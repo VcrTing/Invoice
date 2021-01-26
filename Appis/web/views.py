@@ -9,7 +9,6 @@ from django.http import FileResponse
 import io, os, json, uuid, time, datetime
 from random import choice, sample
 from PIL import Image
-from reportlab.pdfgen import canvas
 import invoice.settings as settings
 
 from Appis.freight.models import Freight, Tag
@@ -170,10 +169,6 @@ class PdfView(View):
 
 class TestView(View):
     def get(self, request):
-        import pdfkit
-        pdf = pdfkit.from_url('https://www.baidu.com', 'out.pdf')
-
-        """
         # Create a file-like buffer to receive PDF data.
         buffer = io.BytesIO()
 
@@ -192,5 +187,4 @@ class TestView(View):
         # present the option to save the file.
         buffer.seek(0)
         return FileResponse(buffer, as_attachment=True, filename='hello.pdf')
-        """
-        return FileResponse(pdf, as_attachment=True, filename='out.pdf')
+        
