@@ -62,7 +62,7 @@ urlpatterns = [
     re_path(r'^media/(?P<path>.*)$',  serve, {'document_root': settings.MEDIA_ROOT}),
     re_path(r'^static/(?P<path>.*)$', serve, {'document_root': settings.STATIC_URL}),
 
-    path('', web.WebView.as_view()),
+    # path('', web.WebView.as_view()),
     # re_path(r'^home/(?P<path>.*)$',  web.WebView.as_view()),
     # re_path(r'^/(?P<path>.*)$',  TemplateView.as_view(template_name="index.html")),
 
