@@ -48,11 +48,13 @@ router.register('listing_content', listingREST.ListingContentViewSet)
 
 # VIEWS
 from Appis.web import views as web
+from Appis.user import views as user
 from Appis.member import views as member
 from Appis.freight import views as freight
 from Appis.listing import views as listing
 
 urlpatterns = [
+    path('into/', user.UserView.as_view()),
     path('tool/import/', web.ImportView.as_view()),
     path('pdf/print/', web.PdfView.as_view()),
     path('pdf/test/', web.TestView.as_view()),
