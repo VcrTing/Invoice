@@ -6,7 +6,7 @@ from Appis.member import models as member_models
 
 class Listing(models.Model):
     # 发票
-    num = models.CharField(max_length=80, null=True, blank=True, default='001', verbose_name='发票编号')
+    num = models.CharField(max_length=150, null=True, blank=True, default='001', verbose_name='发票编号')
     num_reference = models.CharField(max_length=80, null=True, blank=True, verbose_name='参考编号')
 
     listing_time = models.DateTimeField(verbose_name='报价日期', default=timezone.now)
