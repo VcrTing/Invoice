@@ -44,6 +44,7 @@ router.register('price_collect_content', memberREST.PriceCollectContentViewSet)
 router.register('freight', freightREST.FreightViewSet)
 # router.register('freight_every_member', freightREST.FreightEveryMemberViewSet)
 router.register('listing', listingREST.ListingViewSet)
+router.register('listing_no', listingREST.ListingNoViewSet)
 router.register('listing_content', listingREST.ListingContentViewSet)
 
 # VIEWS

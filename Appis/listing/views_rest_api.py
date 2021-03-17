@@ -65,3 +65,25 @@ class ListingContentViewSet(viewsets.ModelViewSet, generics.ListAPIView):
     filter_backends = (DjangoFilterBackend, filters.OrderingFilter)
     filter_fields = ('listing', )
     pagination_class = pagination.LimitOffsetPagination
+
+class ListingNoViewSet(viewsets.ModelViewSet, generics.ListAPIView):
+    """
+        发票编号记录清单
+    """
+    queryset = models.ListingNo.objects.all()
+    serializer_class = serializers.ListingNoSerializer
+    filter_backends = (DjangoFilterBackend, filters.OrderingFilter)
+    filter_fields = ('add_time', 'listing_id', 'status')
+    pagination_class = pagination.LimitOffsetPagination
+
+    def get_queryset(self):
+        res = models.ListingNo.objects.all()
+
+        end_timed = self.request.query_params.get('end_timed', None)
+        start_timed = self.request.query_params.get('start_timed', None)
+
+        if (start_timed is not None) and (end_timed is not None):
+            if (start_timed is not '') and (end_timed is not ''):
+                res = res.filter( Q(add_time__range = (start_timed, end_timed)) )
+
+        return res

@@ -20,7 +20,8 @@ class ListingSerializer(serializers.ModelSerializer):
             'price_collect', 'price_collect_id',
             'freight_item_num', 'result_price', 'total_price_freight',
             'mark',
-            'pay_contact_named', 'pay_contact_area', 'pay_contact_phone', 'pay_contact_email'
+            'pay_contact_named', 'pay_contact_area', 'pay_contact_phone', 'pay_contact_email',
+            'status', 'add_time'
         ]
 
     def create(self, validated_data):
@@ -53,3 +54,13 @@ class ListingContentSerializer(serializers.ModelSerializer):
         instance.save()
         
         return instance
+
+
+class ListingNoSerializer(serializers.ModelSerializer):
+    """
+        发票自定义编号
+    """
+    class Meta:
+        model = models.ListingNo
+        depth = 3
+        fields = '__all__'

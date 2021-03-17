@@ -68,3 +68,23 @@ class ListingContentAdmin(admin.ModelAdmin):
     )
     list_per_page = 50
     empty_value_display = '--'
+
+@admin.register(models.ListingNo)
+class ListingNoAdmin(admin.ModelAdmin):
+
+    list_display = ['val', 'used', 'status']
+    
+    fieldsets = (
+        ("资料", {
+            "fields": (
+                'val', 'used', 'listing_id'
+            ),
+        }),
+        ("其他", {
+            "fields": (
+                'status', 'add_time'
+            ),
+        })
+    )
+    list_per_page = 50
+    empty_value_display = '--'

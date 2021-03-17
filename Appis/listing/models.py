@@ -63,3 +63,19 @@ class ListingContent(models.Model):
 
     def __str__(self):
         return '发票内容: ' + str(self.listing)
+
+class ListingNo(models.Model):
+    listing_id = models.CharField(max_length=150, null=True, blank=True, verbose_name='所属发票 ID')
+    val = models.CharField(max_length=150, null=True, blank=True, verbose_name='具体值')
+    used = models.BooleanField(verbose_name='是否使用默认编号', default = True)
+
+    status = models.BooleanField(verbose_name='数据状态', default = True)
+    add_time = models.DateTimeField(verbose_name='創建時間', default=timezone.now)
+
+    class Meta:
+        verbose_name = "发票编号记录"
+        verbose_name_plural = verbose_name
+
+    def __str__(self):
+        return '发票编号记录: ' + str(self.val)
+    
