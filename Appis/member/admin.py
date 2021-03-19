@@ -7,21 +7,26 @@ from invoice.settings import ADMIN_CONF
 admin.site.site_title = ADMIN_CONF['admin_title']
 admin.site.site_header = ADMIN_CONF['admin_header']
 
-@admin.register(models.Area)
-class AreaAdmin(admin.ModelAdmin):
+@admin.register(models.PayTime)
+class PayTimeAdmin(admin.ModelAdmin):
 
-    list_display = ['area', ]
+    list_display = ['pay_time', 'named', 'status', 'add_time']
     
-    search_fields = ['area', ]
-    list_filter = ['area', ]
+    search_fields = ['pay_time', ]
+    list_filter = ['pay_time', ]
     # readonly_fields = ['area', ]
     # exclude = ['id']
     fieldsets = (
         ("资料", {
             "fields": (
-                'area', 
+                'pay_time', 'named'
             ),
         }),
+        ("其他", {
+            "fields": (
+                'status', 'add_time'
+            ),
+        })
     )
     list_per_page = 50
     empty_value_display = '--'
@@ -29,7 +34,7 @@ class AreaAdmin(admin.ModelAdmin):
 @admin.register(models.Membery)
 class MemberyAdmin(admin.ModelAdmin):
 
-    list_display = ['num', 'named', 'area', 'addr', 'status', 'add_time']
+    list_display = ['num', 'named', 'area', 'pay_time', 'addr', 'status', 'add_time']
     
     search_fields = ['named', ]
     list_filter = ['status', ]
@@ -38,7 +43,7 @@ class MemberyAdmin(admin.ModelAdmin):
     fieldsets = (
         ("资料", {
             "fields": (
-                'num', 'named', 'addr', 'tag'
+                'num', 'named', 'addr', 'tag', 'pay_time'
             ),
         }),
         ("联络信息", {
@@ -71,7 +76,7 @@ class PriceCollectAdmin(admin.ModelAdmin):
     fieldsets = (
         ("资料", {
             "fields": (
-                'num', 'membery', 'freight_num'
+                'num', 'membery', 'freight_num', 'pay_time'
             ),
         }),
         ("状态", {

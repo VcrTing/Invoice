@@ -43,7 +43,6 @@ class UserView(View):
             option = data['salt']
             email = data['into_k']
             pwd = data['into_v']
-        print(email, pwd)
 
         if option == 'DENGLU':
             for u in users:
@@ -51,7 +50,9 @@ class UserView(View):
                     if check_password(pwd, u.password):
                         res['status'] = True
                         res['nick'] = u.username
-                        print(res['nick'])
+                        
+                        u.now_login = datetime.datetime.now()
+                        u.save()
                         return JsonResponse(res)
                     res['msg'] = 'PWD_ERROR'
         return JsonResponse(res)

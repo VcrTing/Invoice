@@ -15,6 +15,7 @@ class Listing(models.Model):
         (0, '支票'),
         (1, '现金')
     ), default=1, verbose_name='付款方式', null=True)
+    pay_time = models.ForeignKey(member_models.PayTime, on_delete=models.CASCADE, null=True, blank=True, verbose_name='付款日期')
 
     pay_contact_named = models.CharField(max_length=80, null=True, blank=True, verbose_name='销售员名称')
     pay_contact_area = models.CharField(max_length=80, null=True, blank=True, verbose_name='销售员电话号码前缀')
@@ -35,7 +36,7 @@ class Listing(models.Model):
 
     draft_status = models.BooleanField(verbose_name='是否是草稿', default = False)
     merge_status = models.BooleanField(verbose_name='是否合并过', default = False)
-    pay_status = models.BooleanField(verbose_name='是否支付过', default = False)
+    pay_status = models.BooleanField(verbose_name='付款成功？', default = False)
     pdf_status = models.BooleanField(verbose_name='是否导出过', default = False)
 
     status = models.BooleanField(verbose_name='数据状态', default = True)

@@ -10,6 +10,15 @@ from . import models
 from . import serializers
 
 # REST
+class PayTimeViewSet(viewsets.ModelViewSet, generics.ListAPIView):
+    """
+        付款日期
+    """
+    queryset = models.PayTime.objects.all()
+    serializer_class = serializers.PayTimeSerializer
+    filter_backends = (DjangoFilterBackend, filters.OrderingFilter)
+    pagination_class = pagination.LimitOffsetPagination
+
 class AreaViewSet(viewsets.ModelViewSet, generics.ListAPIView):
     """
         电话前缀

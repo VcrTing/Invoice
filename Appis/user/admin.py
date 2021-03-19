@@ -35,7 +35,7 @@ class UserProfileAdmin(UserAdmin):
         }),
         ("其他", {
             "fields": (
-                'last_login', 'date_joined'
+                'now_login', 'last_login', 'date_joined'
             ),
         }),
     )

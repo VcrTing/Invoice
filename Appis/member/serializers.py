@@ -3,6 +3,16 @@ from . import models
 from Appis.freight.models import Tag
 
 # Serializer
+
+class PayTimeSerializer(serializers.ModelSerializer):
+    """
+        付款日期
+    """
+    class Meta:
+        model = models.PayTime
+        depth = 3
+        fields = '__all__'
+
 class AreaSerializer(serializers.ModelSerializer):
     """
         电话前缀
@@ -22,7 +32,7 @@ class MemberySerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Membery
         depth = 3
-        fields = ['id', 'num', 'named', 'tag', 'tag_id', 'contact_named', 'area', 'area_id', 'phoned', 'email', 'addr', 'status', 'add_time']
+        fields = ['id', 'num', 'named', 'tag', 'tag_id', 'contact_named', 'area', 'area_id', 'pay_time', 'phoned', 'email', 'addr', 'status', 'add_time']
 
     def create(self, validated_data):
         tag_id = validated_data.pop('tag_id')

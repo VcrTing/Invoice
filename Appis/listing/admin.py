@@ -10,7 +10,7 @@ admin.site.site_header = ADMIN_CONF['admin_header']
 @admin.register(models.Listing)
 class ListingAdmin(admin.ModelAdmin):
 
-    list_display = ['num', 'listing_time', 'pay_way', 'price_collect', 'membery', 'result_price', 'status']
+    list_display = ['num', 'listing_time', 'pay_way', 'pay_time', 'membery', 'result_price', 'status']
     
     search_fields = ['membery', 'num']
     list_filter = ['status', ]
@@ -19,7 +19,7 @@ class ListingAdmin(admin.ModelAdmin):
     fieldsets = (
         ("资料", {
             "fields": (
-                'num', 'num_reference', 'listing_time', 'pay_way', 'membery', 'price_collect'
+                'num', 'num_reference', 'listing_time', 'pay_way', 'pay_time', 'membery', 'price_collect'
             ),
         }),
         ("价格", {
@@ -52,7 +52,7 @@ class ListingAdmin(admin.ModelAdmin):
 @admin.register(models.ListingContent)
 class ListingContentAdmin(admin.ModelAdmin):
 
-    list_display = ['status', ]
+    list_display = ['status', 'add_time']
     
     fieldsets = (
         ("资料", {

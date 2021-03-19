@@ -17,6 +17,8 @@ class UserProfile(AbstractUser):
     is_superuser = models.BooleanField(default=False, verbose_name='是否超级用户', help_text='无视权限认证，一键拥有超级权限。')
     password = models.CharField(max_length=240, verbose_name='登录密码')
 
+    now_login = models.DateTimeField(verbose_name='本次登录', default=timezone.now)
+
     status = models.BooleanField(verbose_name='账号是否可用', default=True)
     add_time = models.DateTimeField(verbose_name='创建时间', default=timezone.now)
 
