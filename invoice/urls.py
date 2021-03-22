@@ -36,6 +36,7 @@ router.register('user', userREST.UserProfileViewSet)
 
 router.register('tag', freightREST.TagViewSet)
 router.register('area', memberREST.AreaViewSet)
+router.register('pay_time', memberREST.PayTimeViewSet)
 
 router.register('member', memberREST.MemberyViewSet)
 router.register('price_collect', memberREST.PriceCollectViewSet)
