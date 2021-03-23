@@ -33,7 +33,7 @@ class MemberySerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Membery
         depth = 3
-        fields = ['id', 'num', 'named', 'tag', 'tag_id', 'contact_named', 'area', 'area_id', 'pay_time', 'pay_time_id', 'phoned', 'email', 'addr', 'status', 'add_time']
+        fields = ['id', 'num', 'named', 'tag', 'tag_id', 'contact_named', 'area', 'area_id', 'pay_way', 'pay_time', 'pay_time_id', 'phoned', 'email', 'addr', 'status', 'add_time']
 
     def create(self, validated_data):
         tag_id = validated_data.pop('tag_id')
@@ -59,7 +59,7 @@ class PriceCollectSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.PriceCollect
         depth = 3
-        fields = [ 'id', 'num', 'start_time', 'end_time', 'freight_num', 'draft_status', 'pay_time', 'pay_time_id', 'over_status', 'first_pdf', 'membery', 'membery_id', 'status', 'add_time']
+        fields = [ 'id', 'num', 'start_time', 'end_time', 'freight_num', 'draft_status', 'pay_way', 'pay_time', 'pay_time_id', 'over_status', 'first_pdf', 'membery', 'membery_id', 'status', 'add_time']
 
     def create(self, validated_data):
         membery_id = validated_data.pop('membery_id')

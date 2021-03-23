@@ -43,7 +43,7 @@ class MemberyAdmin(admin.ModelAdmin):
     fieldsets = (
         ("资料", {
             "fields": (
-                'num', 'named', 'addr', 'tag', 'pay_time'
+                'num', 'named', 'addr', 'tag', 'pay_time', 'pay_way'
             ),
         }),
         ("联络信息", {
@@ -76,7 +76,7 @@ class PriceCollectAdmin(admin.ModelAdmin):
     fieldsets = (
         ("资料", {
             "fields": (
-                'num', 'membery', 'freight_num', 'pay_time'
+                'num', 'membery', 'freight_num', 'pay_way', 'pay_time'
             ),
         }),
         ("状态", {

@@ -39,6 +39,11 @@ class Membery(models.Model):
     named = models.CharField(max_length=80, null=True, blank=True, verbose_name='公司名称')
     
     tag = models.ForeignKey(freight_models.Tag, on_delete=models.CASCADE, null=True, blank=True, verbose_name='标签')
+    
+    pay_way = models.SmallIntegerField(choices=(
+        (0, '支票'),
+        (1, '现金')
+    ), default=1, verbose_name='付款方式', null=True)
     pay_time = models.ForeignKey(PayTime, on_delete=models.CASCADE, null=True, blank=True, verbose_name='付款日期')
 
     contact_named = models.CharField(max_length=60, null=True, blank=True, verbose_name='联络人姓名', default='无')
@@ -73,6 +78,10 @@ class PriceCollect(models.Model):
     first_pdf = models.BooleanField(verbose_name='是否导出过 Pdf', default = False)
     
     membery = models.ForeignKey(Membery, verbose_name='所属客人', on_delete=models.CASCADE, null=True)
+    pay_way = models.SmallIntegerField(choices=(
+        (0, '支票'),
+        (1, '现金')
+    ), default=1, verbose_name='付款方式', null=True)
     pay_time = models.ForeignKey(PayTime, on_delete=models.CASCADE, null=True, blank=True, verbose_name='付款日期')
 
     status = models.BooleanField(verbose_name='数据状态', default = True)

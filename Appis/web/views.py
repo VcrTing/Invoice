@@ -129,16 +129,17 @@ class PdfView(View):
             if option == 'prices':
                 page = 'pdf/prices.html'
                 prices_id = request.GET.get('pcc_id', None)
-                print(prices_id)
+                print('prices_id', prices_id)
                 if prices_id:
                     prices = model_member.PriceCollect.objects.filter(id = prices_id)
-                    print(prices)
+                    
                     prices = prices[0]
                     
                     res = {
                         'status': True,
                         'membery': prices.membery,
-                        'prices': prices
+                        'prices': prices,
+                        'payment': self.ser_payment(prices.pay_way)
                     }
 
             elif option == 'combine':
