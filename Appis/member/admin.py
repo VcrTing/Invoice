@@ -7,6 +7,25 @@ from invoice.settings import ADMIN_CONF
 admin.site.site_title = ADMIN_CONF['admin_title']
 admin.site.site_header = ADMIN_CONF['admin_header']
 
+@admin.register(models.Area)
+class AreaAdmin(admin.ModelAdmin):
+
+    list_display = ['area', ]
+    
+    search_fields = ['area', ]
+    list_filter = ['area', ]
+    # readonly_fields = ['area', ]
+    # exclude = ['id']
+    fieldsets = (
+        ("资料", {
+            "fields": (
+                'area', 
+            ),
+        }),
+    )
+    list_per_page = 50
+    empty_value_display = '--'
+
 @admin.register(models.PayTime)
 class PayTimeAdmin(admin.ModelAdmin):
 
