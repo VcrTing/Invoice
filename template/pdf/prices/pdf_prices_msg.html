@@ -1,18 +1,18 @@
 <table class="w-100 fs-vw-18 prices-msg-table">
   <tr>
-    <td width="39%">報價單號：</td>
+    <td width="39%">{{ PDF_LANG.PDF_PRICE.quotation }}{{ PDF_LANG.PDF_PRICE.num }}：</td>
     <td>{{ prices.num }}</td>
   </tr>
   <tr>
-    <td>付款方式：</td>
+    <td>{{ PDF_LANG.PDF_MSG.pay_way }}：</td>
     <td>{{ payment }}</td>
   </tr>
   <tr>
-    <td>付款期限：</td>
+    <td>{{ PDF_LANG.PDF_MSG.pay_time }}：</td>
     <td>{{ prices.pay_time.named }}</td>
   </tr>
   <tr>
-    <td>報價日期：</td>
+    <td>{{ PDF_LANG.PDF_MSG.quotate }}{{ PDF_LANG.PDF_LISTING.date }}：</td>
     <td>{{ prices.start_time| date:"Y-m-d" }}</td>
   </tr>
 </table>

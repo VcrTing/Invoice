@@ -10,7 +10,7 @@
     <div class="col-sm-12">
       
       <div class="mt-2 fw-b fs-vw-30">
-        報價單
+        {{ PDF_LANG.PDF_PRICE.quotation }}
       </div>
 
     </div>
@@ -42,7 +42,7 @@
     </div>
   </div>
   {% else %}
-  <div class="p-5">無結果</div>
+  <div class="p-5">{{ PDF_LANG.PDF_MSG.no_data }}</div>
   {% endif %}
 </div>
 

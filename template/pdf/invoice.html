@@ -10,7 +10,7 @@
     <div class="col-sm-12">
       
       <div class="mt-2 fw-b fs-vw-30">
-        發票
+        {{ PDF_LANG.PDF_LISTING.listing }}
       </div>
 
     </div>
@@ -42,41 +42,39 @@
     </div>
   </div>
   {% else %}
-  <div class="p-5">無結果</div>
+  <div class="p-5">{{ PDF_LANG.PDF_MSG.no_data }}</div>
   {% endif %}
 </div>
 
 <script>
+
   const invoiceFooter = `
     <tr class="pdf-table-freight-footer pdf-tr br-t-pdf">
-      <td>備註</td>
-      <td colspan="3">
+      <td>{{ PDF_LANG.PDF_FOOTER.mark }}</td>
+      <td colspan="3" rowspan="3" class="invoice_mark">
+        <div class="pl-2 pr-2">{{ listing.mark }}</div>
       </td>
-      <td class="footer-title-td">合計</td>
+      <td class="footer-title-td">{{ PDF_LANG.PDF_FOOTER.total }}</td>
       <td>HK$</td>
+      <td class="text-right pr-2">{{ listing.total_price_freight }}</td>
+    </tr>
+    <tr class="pdf-table-freight-footer pdf-tr">
       <td></td>
+      <td class="footer-title-td">{{ PDF_LANG.PDF_FOOTER.surcharge }}</td>
+      <td>HK$</td>
+      <td class="text-right pr-2">{{ listing.total_add }}</td>
+    </tr>
+    <tr class="pdf-table-freight-footer pdf-tr">
+      <td></td>
+      <td class="footer-title-td">{{ PDF_LANG.PDF_FOOTER.discount }}</td>
+      <td></td>
+      <td class="text-right pr-2">{{ listing.total_discount }}</td>
     </tr>
     <tr class="pdf-table-freight-footer pdf-tr">
       <td></td>
       <td colspan="3">
       </td>
-      <td class="footer-title-td">附加費</td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr class="pdf-table-freight-footer pdf-tr">
-      <td></td>
-      <td colspan="3">
-      </td>
-      <td class="footer-title-td">折扣</td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr class="pdf-table-freight-footer pdf-tr">
-      <td></td>
-      <td colspan="3">
-      </td>
-      <td class="footer-title-td">總額</td>
+      <td class="footer-title-td">{{ PDF_LANG.PDF_FOOTER.total_price }}</td>
       <td>HK$</td>
       <td class="text-right pr-2 res_price"></td>
     </tr>
@@ -117,14 +115,14 @@
         <tr class="pdf-tr">
           <td>${index}</td>
           <td>${e.num}</td>
-          <td class="text-left pl-1">${e.named}</td>
+          <td class="text-left pl-2">${e.named}</td>
           <td>
             <div class="count-left">${e.count}</div>  
             <div class="count-right">${unit}</div>  
           </td>
-          <td class="text-right pr-1">${e.price}</td>
+          <td class="text-right pr-2">${e.price}</td>
           <td></td>
-          <td class="text-right pr-1">${item_prices}</td>
+          <td class="text-right pr-2">${item_prices}</td>
         </tr>
       `
       listing.append(html)
@@ -132,6 +130,10 @@
       res_price = floatAdd(res_price, item_prices)
     }
     listing.append(invoiceFooter)
+
+    res_price = floatMul(res_price, {{ listing.total_discount }})
+    res_price = floatMul(res_price, 0.1)
+    res_price = floatAdd(res_price, {{ listing.total_add }})
     listing.find('.res_price').html(res_price)
   }
   

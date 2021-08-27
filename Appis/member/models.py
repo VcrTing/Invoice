@@ -38,7 +38,7 @@ class Membery(models.Model):
     num = models.CharField(max_length=80, null=True, blank=True, verbose_name='客户编号')
     named = models.CharField(max_length=80, null=True, blank=True, verbose_name='公司名称')
     
-    tag = models.ForeignKey(freight_models.Tag, on_delete=models.CASCADE, null=True, blank=True, verbose_name='标签')
+    tag = models.ForeignKey(freight_models.Tag, on_delete=models.SET_NULL, null=True, blank=True, verbose_name='标签')
     
     pay_way = models.SmallIntegerField(choices=(
         (0, '支票'),

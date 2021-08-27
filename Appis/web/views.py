@@ -15,6 +15,10 @@ from Appis.freight.models import Freight, Tag
 from Appis.member import models as model_member
 from Appis.listing import models as model_listing
 from Appis import comp as comp
+
+from Appis.web.i18n import zh_HK
+from Appis.web.i18n import en_US
+
 # Create your views here.
 class WebView(View):
     def get(self, request):
@@ -117,19 +121,31 @@ class PdfView(View):
             return '支票'
         return '现金'
     
+    def ser_lang(self, request):
+        LANG = None
+        lang = request.GET.get('lang', None)
+        if (lang == 'zh-HK'):
+            LANG = zh_HK.PDF_HK
+        elif (lang == 'en-US'):
+            LANG = en_US.PDF_US
+        return LANG
+
     @xframe_options_exempt
     def get(self, request):
         res = { 
             'status': False
         }
-        page = 'pdf/invoice.html'
+        PDF_LANG = self.ser_lang(request)
 
         option = request.GET.get('option', None)
+        page_path = 'pdf'    
+        page = page_path + '/invoice.html'
+        
         try:
             if option == 'prices':
-                page = 'pdf/prices.html'
+                page = page_path + '/prices.html'
                 prices_id = request.GET.get('pcc_id', None)
-                print('prices_id', prices_id)
+                
                 if prices_id:
                     prices = model_member.PriceCollect.objects.filter(id = prices_id)
                     
@@ -139,11 +155,12 @@ class PdfView(View):
                         'status': True,
                         'membery': prices.membery,
                         'prices': prices,
-                        'payment': self.ser_payment(prices.pay_way)
+                        'payment': self.ser_payment(prices.pay_way),
+                        'PDF_LANG': PDF_LANG
                     }
 
             elif option == 'combine':
-                page = 'pdf/combine.html'
+                page = page_path + '/combine.html'
                 res = {
                     'status': True,
                     'createdTimed': datetime.datetime.now()
@@ -160,7 +177,8 @@ class PdfView(View):
                         'membery': listing.membery,
                         'listing': listing,
                         'area': area[0],
-                        'payment': self.ser_payment(listing.pay_way)
+                        'payment': self.ser_payment(listing.pay_way),
+                        'PDF_LANG': PDF_LANG
                     }
         except:
             print('pdf print 出错')

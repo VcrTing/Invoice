@@ -10,7 +10,7 @@ admin.site.site_header = ADMIN_CONF['admin_header']
 
 @admin.register(models.Tag)
 class TagAdmin(admin.ModelAdmin):
-    list_display = ['named', 'color', 'add_time']
+    list_display = ['named', 'color', 'status', 'add_time']
     search_fields = ['named']
     readonly_fields = ['add_time']
     exclude = ['id']
@@ -22,7 +22,7 @@ class TagAdmin(admin.ModelAdmin):
         }),
         ("其他", {
             "fields": (
-                'add_time', 
+                'status', 'add_time', 
             ),
         }),
     )

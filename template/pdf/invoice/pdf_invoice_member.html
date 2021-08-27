@@ -2,32 +2,32 @@
   <table class="w-100 fs-vw-18" >
     <tbody class="">
       <tr>
-        <td width="18%">客戶：</td>
+        <td width="18%">{{ PDF_LANG.PDF_MSG.member }}：</td>
         <td colspan="2">{{ membery.named }}</td>
       </tr>
       <tr>
-        <td>地址：</td>
+        <td>{{ PDF_LANG.PDF_MSG.address }}：</td>
         <td colspan="2">{{ membery.addr }}</td>
       </tr>
       <tr>
         <td colspan="3">&nbsp;</td>
       </tr>
       <tr>
-        <td>聯絡人：</td>
+        <td>{{ PDF_LANG.PDF_MSG.connect }}：</td>
 
         <td width="40%">{{ listing.pay_contact_named }}</td>
 
         <td></td>
       </tr>
       <tr>
-        <td>電話：</td>
+        <td>{{ PDF_LANG.PDF_MSG.phoned }}：</td>
 
         <td>{{ area.area }}&nbsp;{{ listing.pay_contact_phone }}</td>
 
-        <td>傳真：</td>
+        <td>{{ PDF_LANG.PDF_MSG.fax }}：</td>
       </tr>
       <tr>
-        <td>電郵地址：</td>
+        <td>{{ PDF_LANG.PDF_MSG.email }}：</td>
 
         <td colspan="2">{% if listing.pay_contact_email is not None %} {{ listing.pay_contact_email }} {% endif %}</td>
         <!-- td v-else width="40%">

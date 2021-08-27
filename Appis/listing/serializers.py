@@ -19,7 +19,7 @@ class ListingSerializer(serializers.ModelSerializer):
             'id', 'num', 'listing_time', 'pay_way', 'pay_time', 'pay_time_id', 
             'membery', 'membery_id',
             'price_collect', 'price_collect_id',
-            'freight_item_num', 'result_price', 'total_price_freight',
+            'freight_item_num', 'result_price', 'total_price_freight', 'total_add', 'total_discount',
             'mark', 'pay_status',
             'pay_contact_named', 'pay_contact_area', 'pay_contact_phone', 'pay_contact_email',
             'status', 'add_time'

@@ -9,6 +9,7 @@ class Tag(models.Model):
     named = models.CharField(max_length=20, null=True, blank=True, unique=True, verbose_name='标签名称')
     color = models.CharField(max_length=20, default='#CCD6D5', null=True, blank=True, unique=True, verbose_name='标签颜色')
 
+    status = models.BooleanField(verbose_name='数据状态', default = True)
     add_time = models.DateTimeField(verbose_name='创建时间', default=timezone.now)
 
     class Meta:
