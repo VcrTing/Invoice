@@ -131,9 +131,17 @@
     }
     listing.append(invoiceFooter)
 
-    res_price = floatMul(res_price, {{ listing.total_discount }})
+    let disc = '{{ listing.total_discount }}'
+    let add = '{{ listing.total_add }}'
+
+    if (!add) { add = 0 } else { add = Number.parseFloat(add) }
+    if (!disc) { disc = 10 } else { disc = Number.parseFloat(disc) }
+
+    console.log(res_price, disc, add)
+
+    res_price = floatMul(res_price, disc)
     res_price = floatMul(res_price, 0.1)
-    res_price = floatAdd(res_price, {{ listing.total_add }})
+    res_price = floatAdd(res_price, add)
     listing.find('.res_price').html(res_price)
   }
   

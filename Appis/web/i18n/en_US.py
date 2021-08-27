@@ -2,7 +2,7 @@ PDF_US = {
     'PDF_MSG': {
         'member': 'Customer',
         'member_num': 'Number',
-        'pay_time': 'Payment Date',
+        'pay_time': 'Payment Terms',
         'pay_way': 'Payment',
         'sell_men': 'Salesman',
 
@@ -17,14 +17,14 @@ PDF_US = {
     'PDF_LISTING': {
         'listing': 'Invoice',
         'index': 'Index',
-        'num': 'Number',
+        'num': ' Number',
         'named': 'Name',
         'price': 'Price',
         'money': 'Result',
         'quantity': 'Quantity',
         'discount': 'Discount',
         'product': 'Product',
-        'date': 'Date',
+        'date': ' Date',
 
         'product_num': 'Number'
     },

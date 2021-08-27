@@ -19,6 +19,8 @@ from Appis import comp as comp
 from Appis.web.i18n import zh_HK
 from Appis.web.i18n import en_US
 
+from Appis.comp import PAY_TIME, PAY_TIME_EN
+
 # Create your views here.
 class WebView(View):
     def get(self, request):
@@ -116,10 +118,28 @@ class ImportView(View):
         return JsonResponse(res)
 
 class PdfView(View):
-    def ser_payment(self, payment):
+    def ser_payment(self, payment, request):
+
+        lang = request.GET.get('lang', None)
+
+        if (lang == 'en-US'):
+            if payment == 0:
+                return 'Cheque'
+            return 'Cash'
+
         if payment == 0:
             return '支票'
         return '现金'
+    
+    def ser_pay_time(self, pay_time, request):
+
+        lang = request.GET.get('lang', None)
+
+        if (lang == 'en-US'):
+            return PAY_TIME_EN[pay_time][1]
+
+        return PAY_TIME[pay_time][1]
+
     
     def ser_lang(self, request):
         LANG = None
@@ -155,7 +175,9 @@ class PdfView(View):
                         'status': True,
                         'membery': prices.membery,
                         'prices': prices,
-                        'payment': self.ser_payment(prices.pay_way),
+                        'payment': self.ser_payment(prices.pay_way, request),
+                        'pay_time': self.ser_pay_time(prices.pay_time.pay_time, request),
+                        
                         'PDF_LANG': PDF_LANG
                     }
 
@@ -177,7 +199,9 @@ class PdfView(View):
                         'membery': listing.membery,
                         'listing': listing,
                         'area': area[0],
-                        'payment': self.ser_payment(listing.pay_way),
+                        'payment': self.ser_payment(listing.pay_way, request),
+                        'pay_time': self.ser_pay_time(listing.pay_time.pay_time, request),
+
                         'PDF_LANG': PDF_LANG
                     }
         except:
