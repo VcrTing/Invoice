@@ -11,7 +11,7 @@ TEST = _TEST
 DATABASE = {
   'ENGINE': 'django.db.backends.mysql',
   'NAME': 'invoice',
-  'HOST': 'crm01.svr.up5d.com',
+  'HOST': '139.180.220.44',
   'PORT': 3306,
   'USER': 'root',
   'PASSWORD': 'VcrTing.ZT123zlt',
