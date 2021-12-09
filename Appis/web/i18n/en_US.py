@@ -29,7 +29,7 @@ PDF_US = {
         'product_num': 'Product No.'
     },
     'PDF_PRICE': {
-        'quotation': 'Quotation',
+        'quotation': 'Quotation No.',
         'quotate': '',
         'num': 'Id'
     },
