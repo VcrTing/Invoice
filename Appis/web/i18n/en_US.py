@@ -3,7 +3,7 @@ PDF_US = {
         'member': 'Customer',
         'member_num': 'Number',
         'pay_time': 'Payment Terms',
-        'pay_way': 'Payment',
+        'pay_way': 'Payment by',
         'sell_men': 'Salesman',
 
         'address': 'Address',
@@ -18,7 +18,7 @@ PDF_US = {
         'listing': 'Invoice',
         'index': 'Index',
         'num': ' Number',
-        'named': 'Name',
+        'named': 'Product Description',
         'price': 'Price',
         'money': 'Result',
         'quantity': 'Quantity',
@@ -26,7 +26,7 @@ PDF_US = {
         'product': 'Product',
         'date': ' Date',
 
-        'product_num': 'Number'
+        'product_num': 'Product No.'
     },
     'PDF_PRICE': {
         'quotation': 'Quotation',
@@ -40,7 +40,7 @@ PDF_US = {
         'discount': 'Discount',
         'total_price': 'Total Price',
         'consignee': 'Consignee',
-        'stamp': 'Authorized signature and company seal',
+        'stamp': 'Authorized signature and company chop',
         'default_mark': 'Note If required, enter this parameter.'
     },
     'PDF_COMPANY': {
