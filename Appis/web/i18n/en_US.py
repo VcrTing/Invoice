@@ -42,5 +42,8 @@ PDF_US = {
         'consignee': 'Consignee',
         'stamp': 'Authorized signature and company seal',
         'default_mark': 'Note If required, enter this parameter.'
+    },
+    'PDF_COMPANY': {
+        'addr': 'Office: Room A20, 8/F, Lee King Industrial Building, 12 Ng Fong Street, San Po Kong, Kowloon, Hong Kong'
     }
 }
